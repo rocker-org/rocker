@@ -18,4 +18,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 RUN apt-get install -y --no-install-recommends r-base r-base-dev r-recommended littler
 RUN ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r
 
-## launched via cat add-R | docker build -t ubuntu:latest-with-R -
+## launched via cat add-R/Dockerfile | docker build -t ubuntu:latest-with-R -
+
+
+

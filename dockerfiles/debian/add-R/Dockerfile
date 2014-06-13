@@ -11,4 +11,4 @@ RUN apt-get dist-upgrade -y
 RUN apt-get install -y --no-install-recommends r-base r-base-dev r-recommended littler
 RUN ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r
 
-## launched via cat dockerfiles/add-R | docker build -t debian:testing-with-R -
+## launched via cat add-R/Dockerfile | docker build -t debian:testing-with-R -
