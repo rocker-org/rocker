@@ -7,28 +7,16 @@ FROM debian:testing
 MAINTAINER Dirk Eddelbuettel edd@debian.org
 
 ## Remain current
-RUN apt-get update -qq
-RUN apt-get dist-upgrade -y
+RUN apt-get update -qq && apt-get dist-upgrade -y
 
 ## Add Debian unstable to get R 3.1.1 (release 2014-07-10) which has not 
 ## yet migrated to testing
-RUN echo "deb http://http.debian.net/debian unstable main" > /etc/apt/sources.list.d/unstable.list
-RUN apt-get update -qq
+## No longer needed as of Sep 2014
+# #RUN echo "deb http://http.debian.net/debian unstable main" > /etc/apt/sources.list.d/unstable.list
+# #RUN apt-get update -qq
 
 ## Now install R and littler, and create a link for littler in /usr/local/bin
-## We do this in different commands as each command leads to a different aufs layer
-RUN apt-get install -y --no-install-recommends r-base 
-RUN apt-get install -y --no-install-recommends r-base-dev 
-RUN apt-get install -y --no-install-recommends r-recommended 
-RUN apt-get install -y --no-install-recommends littler
-RUN ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r
+RUN apt-get install -y --no-install-recommends r-base r-base-dev r-recommended littler && ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r
 
 ## Install a few more things that are useful
-RUN apt-get install -y --no-install-recommends vim-tiny
-RUN apt-get install -y --no-install-recommends less
-RUN apt-get install -y --no-install-recommends wget
-
-
-## can be launched / used from the command-line via 
-##   cat Dockerfile | docker build -t debian:testing-with-R -
-## to create an image under tag 'debian:testing-with-R'
+RUN apt-get install -y --no-install-recommends vim-tiny less wget
