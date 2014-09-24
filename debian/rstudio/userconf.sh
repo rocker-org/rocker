@@ -1,5 +1,10 @@
 #!/bin/bash
 
+## Set defaults for environmental variables in case they are undefined
+USER=${USER:=rstudio}
+PASSWORD=${PASSWORD:=rstudio}
+EMAIL=${EMAIL:=rstudio@example.com}
+
 ## Configure user account name and password (used by rstudio)
 useradd -m $USER && echo "$USER:$PASSWORD" | chpasswd
 
@@ -9,8 +14,8 @@ git config --global user.email $EMAIL
 git config --global credential.helper cache
 cp /.gitconfig /home/$USER
 
-## Sync files placed in host to user's home directory (for non-root access, eg in rstudio)
-rsync -a /host/ /home/$USER/
+## Global config make page-up/down search history
+echo '"\e[5~": history-search-backward' >> /etc/inputrc && echo '"\e[6~": history-search-backward' >> /etc/inputrc
 
 ## Give user access over their own home directory
 chown -R $USER:$USER /home/$USER
