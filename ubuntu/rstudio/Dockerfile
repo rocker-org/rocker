@@ -3,11 +3,8 @@
 FROM eddelbuettel/docker-ubuntu-r:add-r
 MAINTAINER Carl Boettiger cboettig@ropensci.org
 
-## User-configurable environmental variables. -- could set these defaults in the shell script userconf.sh instead
+## discourage apt from prompting the user for input
 ENV DEBIAN-FRONTEND noninteractive
-ENV USER rstudio 
-ENV EMAIL rstudio@example.com
-ENV PASSWORD rstudio
 
 ## Download and install RStudio server
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe" >> /etc/apt/sources.list
@@ -16,7 +13,6 @@ RUN wget http://download2.rstudio.org/rstudio-server-0.98.994-amd64.deb && gdebi
 
 ## This shell script is executed by supervisord when it is run by CMD, configures env variables
 ADD userconf.sh /usr/bin/userconf.sh
-RUN /usr/bin/userconf.sh
 
 ## Configure persistent daemon serving RStudio-server on (container) port 8787
 RUN mkdir -p /var/log/supervisor
