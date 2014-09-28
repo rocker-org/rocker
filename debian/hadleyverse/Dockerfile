@@ -29,8 +29,11 @@ RUN install.r shiny dplyr tidyr mg MonetDB.R
 ## Set default mirror
 RUN echo 'options("repos"="http://cran.rstudio.com", encoding="UTF-8")' > /.Rprofile
 
-## Get hdf5 and a few github repos
-RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("rhdf5", ask=FALSE)' 
+## Add a few github repos
 RUN Rscript -e 'devtools::install_github(c("rstudio/rmarkdown", "rstudio/packrat", "hadley/reshape"));'
+
+## Get hdf5 from BioC
+#RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("rhdf5", ask=FALSE)' 
+
 
 
