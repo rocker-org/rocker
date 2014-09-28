@@ -1,8 +1,10 @@
-FROM cboettig/rstudio:debian 
+
+## Start with the rstudio image providing 'base R' as well as RStudio based on Debian testing
+FROM eddelbuettel/debian-rstudio
+
 MAINTAINER Carl Boettiger cboettig@ropensci.org
 
 ## Add CRAN binaries and update
-
 RUN echo 'deb http://debian-r.debian.net/debian-r/ unstable main' >> /etc/apt/sources.list && gpg --keyserver keyserver.ubuntu.com --recv-keys AE05705B842492A68F75D64E01BF7284B26DD379 && gpg --export AE05705B842492A68F75D64E01BF7284B26DD379  | apt-key add -
 #RUN gpg --check-sigs AE05705B842492A68F75D64E01BF7284B26DD379 
 
@@ -21,8 +23,13 @@ RUN apt-get install -y --no-install-recommends gcc g++ gfortran libblas-dev libl
 ## Additional libraries for rmarkdown stuff
 RUN apt-get install -qqy --no-install-recommends texlive-humanities lmodern texlive-fonts-recommended texlive-latex-extra imagemagick pandoc pandoc-citeproc 
 
+## Use the install.r script from littler (which defaults to using cran.rstudio.com)
+RUN install.r shiny dplyr tidyr mg MonetDB.R
+
+## Set default mirror
 RUN echo 'options("repos"="http://cran.rstudio.com", encoding="UTF-8")' > /.Rprofile
-RUN Rscript -e 'install.packages(c("shiny", "dplyr", "tidyr", "mg", "MonetDB.R"))'
+
+## Get hdf5 and a few github repos
 RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("rhdf5", ask=FALSE)' 
 RUN Rscript -e 'devtools::install_github(c("rstudio/rmarkdown", "rstudio/packrat", "hadley/reshape"));'
 

@@ -14,7 +14,7 @@ Work in progress; talk to @eddelbuettel and @cboettig about how to get involved.
 | Docker Container Source on GitHub          | Docker Hub Build Status and Docker Hub URL 
 | :---------------------------------------   | :-----------------------------------------
 | r-base (base package to build from)        | [good](https://registry.hub.docker.com/u/eddelbuettel/debian-r-base/)
-| r-devel (base plus R-devel and more)       | pending
+| r-devel (base plus R-devel from SVN)       | [good](https://registry.hub.docker.com/u/eddelbuettel/debian-r-devel/)
 | rstudio (base plus RStudio Server)         | [good](https://registry.hub.docker.com/u/eddelbuettel/debian-rstudio/)
 | hadleyverse (base plus Hadley packages)    | pending
 

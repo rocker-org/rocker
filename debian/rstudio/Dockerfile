@@ -1,4 +1,4 @@
-## Start with the rocker image proving 'base R' using a small Debian testing installation and the current R release
+## Start with the rocker image providing 'base R' using a small Debian testing installation and the current R release
 
 FROM eddelbuettel/debian-r-base
 MAINTAINER Carl Boettiger cboettig@ropensci.org
