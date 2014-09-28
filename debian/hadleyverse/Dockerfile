@@ -24,13 +24,13 @@ RUN apt-get install -y --no-install-recommends gcc g++ gfortran libblas-dev libl
 RUN apt-get install -qqy --no-install-recommends texlive-humanities lmodern texlive-fonts-recommended texlive-latex-extra imagemagick pandoc pandoc-citeproc 
 
 ## Use the install.r script from littler (which defaults to using cran.rstudio.com)
-RUN install.r shiny dplyr tidyr mg MonetDB.R
+RUN install.r shiny dplyr tidyr MonetDB.R rmarkdown packrat reshape
 
 ## Set default mirror
 RUN echo 'options("repos"="http://cran.rstudio.com", encoding="UTF-8")' > /.Rprofile
 
-## Add a few github repos
-RUN Rscript -e 'devtools::install_github(c("rstudio/rmarkdown", "rstudio/packrat", "hadley/reshape"));'
+## Add a few github repos -- now done above as CRAN installs
+#RUN Rscript -e 'devtools::install_github(c("rstudio/rmarkdown", "rstudio/packrat", "hadley/reshape"));'
 
 ## Get hdf5 from BioC
 #RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("rhdf5", ask=FALSE)' 
