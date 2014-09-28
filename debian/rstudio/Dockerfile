@@ -1,15 +1,17 @@
-## Start with Dirk Eddelbuettel's R image, based on minimal debian and the current R release.
+## Start with the rocker image proving 'base R' using a small Debian testing installation and the current R release
 
-FROM eddelbuettel/docker-debian-r:add-r
+FROM eddelbuettel/debian-r-base
 MAINTAINER Carl Boettiger cboettig@ropensci.org
 
 ENV DEBIAN-FRONTEND noninteractive
 
 ## Download and install RStudio server
-RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe" >> /etc/apt/sources.list
-RUN apt-get update -q && apt-get dist-upgrade -yq && apt-get install -y -q gdebi-core libapparmor1 supervisor sudo libcurl4-openssl-dev wget git debconf locales && dpkg-reconfigure locales
-RUN wget http://ftp.us.debian.org/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb && sudo dpkg -i libssl0.9.8_0.9.8o-4squeeze14_amd64.deb
-RUN wget http://download2.rstudio.org/rstudio-server-0.98.994-amd64.deb && gdebi -n rstudio-server-0.98.994-amd64.deb && rm rstudio-server-*-amd64.deb
+# -- do not use Ubuntu on Debian  RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe" >> /etc/apt/sources.list
+# -- remove some we do not need   RUN apt-get update -q && apt-get dist-upgrade -yq && apt-get install -y -q gdebi-core libapparmor1 supervisor sudo libcurl4-openssl-dev wget git debconf locales && dpkg-reconfigure locales
+RUN apt-get update -q && apt-get dist-upgrade -yq && apt-get install -y -q supervisor sudo libcurl4-openssl-dev git locales && dpkg-reconfigure locales
+# -- also remove                  RUN wget http://ftp.us.debian.org/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb && sudo dpkg -i libssl0.9.8_0.9.8o-4squeeze14_amd64.deb
+RUN wget http://ftp.us.debian.org/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb && dpkg -i libssl0.9.8_0.9.8o-4squeeze14_amd64.deb && rm libssl0.9.8_0.9.8o-4squeeze14_amd64.deb
+RUN wget http://download2.rstudio.org/rstudio-server-0.98.994-amd64.deb && dpkg -i rstudio-server-0.98.994-amd64.deb && rm rstudio-server-*-amd64.deb
 
 
 ## This shell script is executed by supervisord when it is run by CMD, configures env variables
