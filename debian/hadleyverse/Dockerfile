@@ -27,13 +27,13 @@ RUN apt-get install -qqy --no-install-recommends texlive-humanities lmodern texl
 RUN install.r shiny dplyr tidyr MonetDB.R rmarkdown packrat reshape
 
 ## Set default mirror
-RUN echo 'options("repos"="http://cran.rstudio.com", encoding="UTF-8")' > /.Rprofile
+#RUN echo 'options("repos"="http://cran.rstudio.com", encoding="UTF-8")' > /.Rprofile
 
 ## Add a few github repos -- now done above as CRAN installs
 #RUN Rscript -e 'devtools::install_github(c("rstudio/rmarkdown", "rstudio/packrat", "hadley/reshape"));'
 
 ## Get hdf5 from BioC
-#RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("rhdf5", ask=FALSE)' 
+RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("rhdf5", ask=FALSE)' 
 
 
 
