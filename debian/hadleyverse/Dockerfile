@@ -56,22 +56,3 @@ RUN echo 'options("repos"="http://cran.rstudio.com", encoding="UTF-8")' > /.Rpro
 RUN Rscript -e 'devtools::install_github(c("hadley/reshape"));'
 
 
-
-
-### NOTES: 
-
-## additional packages available as binaries 
-# r-cran-rcpp r-cran-xml r-cran-rjava r-cran-rmysql r-cran-rsqlite r-cran-rsqlite.extfuns r-cran-rpostgresql r-cran-data.table r-cran-microbenchmark r-cran-mgcv r-cran-mass r-cran-rstudioapi r-cran-quantreg r-cran-hmisc r-cran-mapproj r-cran-maps r-cran-hexbin r-cran-maptools r-cran-multcomp r-cran-nlme 
-## Not available as binaries from debian.net: 
-# r-cran-dplyr r-cran-mg r-cran-tidyr r-cran-monetdb.r
-
-
-## From the Build-Depends of the Debian R package
-#RUN apt-get install -y --no-install-recommends gcc g++ gfortran libblas-dev liblapack-dev tcl8.5-dev tk8.5-dev bison groff-base libncurses5-dev libreadline-dev debhelper texinfo libbz2-dev liblzma-dev libpcre3-dev xdg-utils zlib1g-dev libpng-dev libjpeg-dev libx11-dev libxt-dev x11proto-core-dev libpango1.0-dev libcairo2-dev libtiff5-dev xvfb xauth xfonts-base texlive-base texlive-latex-base texlive-generic-recommended texlive-fonts-recommended texlive-fonts-extra texlive-extra-utils texlive-latex-recommended texlive-latex-extra default-jdk mpack bash-completion subversion gcc-4.9 g++-4.9 gfortran-4.9
-
-
-# RUN install.r shiny MonetDB.R packrat
-
-
-
-
