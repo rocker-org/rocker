@@ -16,7 +16,11 @@ RUN apt-get update -qq && apt-get dist-upgrade -y
 # #RUN apt-get update -qq
 
 ## Now install R and littler, and create a link for littler in /usr/local/bin
-RUN apt-get install -y --no-install-recommends r-base r-base-dev r-recommended littler && ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r
+RUN apt-get install -y --no-install-recommends r-base r-base-dev r-recommended littler \
+&& ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r \
+&& ln -s /usr/share/doc/littler/examples/install2.r /usr/local/bin/install2.r \
+&& install.r docopt
+
 
 ## Install a few more things that are useful
 RUN apt-get install -y --no-install-recommends vim-tiny less wget

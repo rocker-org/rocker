@@ -38,12 +38,6 @@ r-cran-rmysql r-cran-rsqlite r-cran-rsqlite.extfuns r-cran-rpostgresql
 # RUN apt-get install -qy r-cran-rgl r-cran-xml r-cran-rjava r-cran-rmysql r-cran-rsqlite r-cran-rsqlite.extfuns r-cran-rpostgresql 
 
 
-## We use the littler install2.r script. It currently installs the suggests list too.  Needs docopt package installed: 
-RUN ln -s /usr/share/doc/littler/examples/install2.r /usr/local/bin/install2.r \
-&& install.r docopt
-
-
-
 ## Finally ready to install the R packages.  NOTE: failure to install a package doesn't throw an image build error. 
 ## Install devtools, ggplot2, dplyr, tidyr + full suggests lists 
 RUN install2.r devtools ggplot2 dplyr tidyr reshape2 roxygen2 knitr testthat rmarkdown httr 
