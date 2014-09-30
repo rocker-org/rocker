@@ -1,5 +1,6 @@
 image: eddelbuettel/debian-r-base
 script:
+  - R --version
   - Rscript --default-packages="stats, graphics, grDevices, datasets, utils, methods, base" -e 'sapply(installed.packages()[,"Package"], tools::testInstalledPackage)'
 
 notify:
