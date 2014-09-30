@@ -21,6 +21,5 @@ RUN apt-get install -y --no-install-recommends r-base r-base-dev r-recommended l
 && ln -s /usr/share/doc/littler/examples/install2.r /usr/local/bin/install2.r \
 && install.r docopt
 
-
 ## Install a few more things that are useful
 RUN apt-get install -y --no-install-recommends vim-tiny less wget
