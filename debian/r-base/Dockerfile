@@ -24,3 +24,10 @@ RUN apt-get install -y --no-install-recommends r-base r-base-dev r-recommended l
 
 ## Install a few more things that are useful
 RUN apt-get install -y --no-install-recommends vim-tiny less wget
+
+
+## Run the package tests and examples (but not vignette builders), and stop if any fail.
+RUN mkdir tests \
+&& Rscript --default-packages="stats, graphics, grDevices, datasets, utils, methods, base" -e 'fails <- sapply(installed.packages()[,"Package"], tools::testInstalledPackage, outDir="/tests", types=c("examples", "tests")); if(any(fails)) stop()' \
+&& rm -rf tests/
+
