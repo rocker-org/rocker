@@ -29,8 +29,6 @@ r-cran-rmysql r-cran-rsqlite r-cran-rsqlite.extfuns r-cran-rpostgresql
 ## Install devtools, ggplot2, dplyr, tidyr + full suggests lists 
 RUN install2.r devtools ggplot2 dplyr tidyr reshape2 roxygen2 knitr testthat rmarkdown httr 
 
-## Set default mirror for github installs
-RUN echo 'options("repos"="http://cran.rstudio.com", encoding="UTF-8")' > /.Rprofile
 ## Add a few github repos where the CRAN version isn't sufficiently recent (e.g. has outstanding bugs) 
 RUN Rscript -e 'devtools::install_github(c("hadley/reshape"));'
 

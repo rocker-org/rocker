@@ -28,8 +28,6 @@ r-cran-rmysql r-cran-rsqlite
 ## Install Hadleyverse packages
 RUN install2.r devtools ggplot2 dplyr tidyr reshape2 roxygen2 knitr testthat rmarkdown httr rcpp rpostgresql
 
-## Use GitHub version for these
-RUN echo 'options("repos"="http://cran.rstudio.com", encoding="UTF-8")' > /.Rprofile
 RUN Rscript -e 'devtools::install_github(c("hadley/reshape"));'
 
 
