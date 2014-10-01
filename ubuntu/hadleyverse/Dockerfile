@@ -16,7 +16,9 @@ RUN add-apt-repository -s -y ppa:marutter/c2d4u \
 && apt-get upgrade -qy 
 
 ## rmarkdown-related dependencies
-RUN apt-get install -y --no-install-recommends pandoc pandoc-citeproc texlive-humanities lmodern texlive-fonts-recommended texlive-latex-extra imagemagick librsvg2-bin ghostscript build-essential libpq-dev
+RUN apt-get install -y --no-install-recommends pandoc pandoc-citeproc \
+texlive-humanities lmodern texlive-fonts-recommended texlive-latex-extra \
+imagemagick librsvg2-bin ghostscript build-essential libpq-dev
 
 ## Package build dependencies
 RUN apt-get build-dep -y r-cran-rgl r-cran-xml r-cran-rjava \
