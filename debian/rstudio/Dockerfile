@@ -2,7 +2,7 @@
 FROM eddelbuettel/debian-r-base
 
 ## This handle reaches Carl and Dirk
-MAINTAINER Rocker Maintainers rocker-maintainers@eddelbuettel.com
+MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
 
 ## discourage apt from prompting the user for input
 ENV DEBIAN-FRONTEND noninteractive
