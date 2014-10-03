@@ -48,7 +48,8 @@ RUN install2.r \
     rmarkdown \
     roxygen2 \
     testthat \
-    tidyr 
+    tidyr && \
+    rm -rf /tmp/downloaded_packages/
 
 ## Add a few github repos where the CRAN version isn't sufficiently recent (e.g. has outstanding bugs) 
 RUN Rscript -e 'devtools::install_github(c("hadley/reshape"));'

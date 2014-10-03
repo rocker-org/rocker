@@ -48,12 +48,13 @@ RUN install2.r \
     rmarkdown \
     roxygen2 \
     testthat \
-    tidyr 
+    tidyr && \
+    rm -rf /tmp/downloaded_packages/
 
 RUN Rscript -e 'devtools::install_github(c("hadley/reshape"));'
 
 
 ## Run tests 
-RUN mkdir tests \
-&& Rscript  --default-packages="stats, graphics, grDevices, datasets, utils, methods, base" -e 'fail <- sapply(c("devtools", "ggplot2", "dplyr", "tidyr", "reshape2", "roxygen2", "knitr", "testthat", "rmarkdown", "httr", "Rcpp"), tools::testInstalledPackage, type=c("tests", "examples"), outDir="tests"); print(fail)'\
-&& rm -r tests
+#RUN mkdir tests \
+#&& Rscript  --default-packages="stats, graphics, grDevices, datasets, utils, methods, base" -e 'fail <- sapply(c("devtools", "ggplot2", "dplyr", "tidyr", "reshape2", "roxygen2", "knitr", "testthat", "rmarkdown", "httr", "Rcpp"), tools:#:testInstalledPackage, type=c("tests", "examples"), outDir="tests"); print(fail)'\
+#&& rm -r tests
