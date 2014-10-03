@@ -13,7 +13,6 @@ git config --global user.name $USER
 git config --global user.email $EMAIL
 git config --global credential.helper cache
 cp /.gitconfig /home/$USER
-echo 'options("repos"="http://cran.rstudio.com", encoding="UTF-8")' > /home/$USER/.Rprofile
 
 ## Global config make page-up/down search history
 echo '"\e[5~": history-search-backward' >> /etc/inputrc && echo '"\e[6~": history-search-backward' >> /etc/inputrc

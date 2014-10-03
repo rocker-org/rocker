@@ -23,3 +23,6 @@ RUN apt-get install -y --no-install-recommends r-base r-base-dev r-recommended l
 
 ## Install a few more things that are useful
 RUN apt-get install -y --no-install-recommends vim-tiny less wget
+
+## Set a default CRAN Repo
+RUN echo 'options("repos"="http://cran.rstudio.com", encoding="UTF-8")' > /etc/R/Rprofile.site

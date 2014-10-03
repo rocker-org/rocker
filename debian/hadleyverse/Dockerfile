@@ -12,25 +12,42 @@ RUN echo 'deb http://debian-r.debian.net/debian-r/ unstable main' >> /etc/apt/so
 RUN echo 'deb-src http://debian-r.debian.net/debian-r/ unstable main' >> /etc/apt/sources.list \
 && echo 'deb-src http://http.debian.net/debian testing main' >> /etc/apt/sources.list 
 
-## Refresh package list and upgrade
-RUN apt-get -qq update && apt-get -qqy dist-upgrade
 
 ## rmarkdown needs pandoc, and works best with some additional (large!) latex libraries
-RUN apt-get install -qqy --no-install-recommends texlive-humanities \
-lmodern texlive-fonts-recommended texlive-latex-extra imagemagick \
-pandoc pandoc-citeproc 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    imagemagick \
+    lmodern \
+    pandoc \
+    pandoc-citeproc \ 
+    texlive-fonts-recommended \
+    texlive-humanities \
+    texlive-latex-extra 
 
 ## Install build dependencies for R packages with apt-get build-dep 
-RUN apt-get install -qqy --no-install-recommends build-essential \
-&& apt-get build-dep -y r-cran-rgl r-cran-xml r-cran-rjava \
-r-cran-rmysql r-cran-rsqlite r-cran-rsqlite.extfuns r-cran-rpostgresql 
+RUN apt-get update && apt-get build-dep -y \
+    r-cran-rgl \
+    r-cran-rjava \
+    r-cran-rmysql \
+    r-cran-rpostgresql 
+    r-cran-rsqlite \
+    r-cran-rsqlite.extfuns \
+    r-cran-xml 
 
 ## Finally ready to install the R packages.  NOTE: failure to install a package doesn't throw an image build error. 
 ## Install devtools, ggplot2, dplyr, tidyr + full suggests lists 
-RUN install2.r devtools ggplot2 dplyr tidyr reshape2 roxygen2 knitr testthat rmarkdown httr 
+RUN install2.r \
+    devtools \
+    dplyr \
+    ggplot2 \
+    httr \ 
+    knitr \
+    reshape2 \
+    rmarkdown \
+    roxygen2 \
+    testthat \
+    tidyr 
 
-## Set default mirror for github installs
-RUN echo 'options("repos"="http://cran.rstudio.com", encoding="UTF-8")' > /.Rprofile
 ## Add a few github repos where the CRAN version isn't sufficiently recent (e.g. has outstanding bugs) 
 RUN Rscript -e 'devtools::install_github(c("hadley/reshape"));'
 

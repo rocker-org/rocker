@@ -5,13 +5,18 @@ MAINTAINER Carl Boettiger cboettig@ropensci.org
 ## discourage apt from prompting the user for input
 ENV DEBIAN-FRONTEND noninteractive
 
+## Stay up-to-date (modulo caching) 
+RUN apt-get update -q && apt-get dist-upgrade -yq 
+
 ## Download and install RStudio server
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe" >> /etc/apt/sources.list \
-&& apt-get update -q && apt-get dist-upgrade -yq \
-&& apt-get install -y -q gdebi-core libapparmor1 supervisor sudo libcurl4-openssl-dev wget git \
+&& apt-get update -q \
+&& apt-get install -y -q libapparmor1 supervisor sudo libcurl4-openssl-dev git \
 && update-locale \
-&& wget http://download2.rstudio.org/rstudio-server-0.98.994-amd64.deb \
-&& gdebi -n rstudio-server-0.98.994-amd64.deb && rm rstudio-server-*-amd64.deb
+&& (wget -q https://s3.amazonaws.com/rstudio-server/current.ver -O currentVersion.txt \
+&& ver=$(cat currentVersion.txt) \
+&& wget http://download2.rstudio.org/rstudio-server-${ver}-amd64.deb \
+&& dpkg -i rstudio-server-${ver}-amd64.deb && rm rstudio-server-*-amd64.deb)
 
 ## This shell script is executed by supervisord when it is run by CMD, configures env variables
 ADD userconf.sh /usr/bin/userconf.sh
