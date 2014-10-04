@@ -43,7 +43,7 @@ RUN install2.r \
     ggplot2 \
     httr \ 
     knitr \
-    rcpp \
+    Rcpp \
     reshape2 \
     rmarkdown \
     roxygen2 \
