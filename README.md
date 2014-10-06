@@ -24,8 +24,8 @@ Work in progress; talk to @eddelbuettel and @cboettig about how to get involved.
 | :---------------------------------------      | :-----------------------------------------
 | r-base (base package to build from)           | [good](https://registry.hub.docker.com/u/eddelbuettel/ubuntu-r-base/)
 | r-devel (base plus R-devel from SVN)          | [good](https://registry.hub.docker.com/u/eddelbuettel/ubuntu-r-devel/)
-| rstudio (base plus RStudio Server)            | pending
-| hadleyverse (rstudio plus Hadley packages)    | pending
+| rstudio (base plus RStudio Server)            | [good](https://registry.hub.docker.com/u/eddelbuettel/ubuntu-rstudio/)
+| hadleyverse (rstudio plus Hadley packages)    | [good](https://registry.hub.docker.com/u/eddelbuettel/ubuntu-hadleyverse/)
 
 ## Trademarks ##
 

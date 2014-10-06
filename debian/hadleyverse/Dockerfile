@@ -16,6 +16,7 @@ RUN echo 'deb-src http://debian-r.debian.net/debian-r/ unstable main' >> /etc/ap
 ## rmarkdown needs pandoc, and works best with some additional (large!) latex libraries
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
+    ghostscript \
     imagemagick \
     lmodern \
     pandoc \
@@ -29,7 +30,7 @@ RUN apt-get update && apt-get build-dep -y \
     r-cran-rgl \
     r-cran-rjava \
     r-cran-rmysql \
-    r-cran-rpostgresql 
+    r-cran-rpostgresql \ 
     r-cran-rsqlite \
     r-cran-rsqlite.extfuns \
     r-cran-xml 
@@ -42,11 +43,13 @@ RUN install2.r \
     ggplot2 \
     httr \ 
     knitr \
+    Rcpp \
     reshape2 \
     rmarkdown \
     roxygen2 \
     testthat \
-    tidyr 
+    tidyr && \
+    rm -rf /tmp/downloaded_packages/
 
 ## Add a few github repos where the CRAN version isn't sufficiently recent (e.g. has outstanding bugs) 
 RUN Rscript -e 'devtools::install_github(c("hadley/reshape"));'

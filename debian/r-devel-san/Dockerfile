@@ -73,12 +73,17 @@ RUN cd /tmp/R-devel \
    AWK=/usr/bin/awk \
    CFLAGS="-pipe -std=gnu99 -Wall -pedantic -O3" \
    CXXFLAGS="-pipe -Wall -pedantic -O3" \
+   CC="gcc -fsanitize=address,undefined" \
+   CXX="g++ -fsanitize=address,undefined" \
+   FC="gfortran -fsanitize=address,undefined" \
+   F77="gfortran -fsanitize=address,undefined" \
    ./configure --enable-R-shlib \
                --without-blas \
                --without-lapack \
                --without-readline \
                --without-recommended-packages \
                --program-suffix=dev \
+               --disable-openmp \
 && make \
 && make install \
 && rm -rf /tmp/r-devel
