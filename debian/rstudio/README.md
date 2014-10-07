@@ -14,7 +14,7 @@ installed (easy point & click install, ~24 MB).
 1) Launch boot2docker, and do:
 
 ```bash
-sudo docker run -d -p 8787:8787 eddelbuettel/ubuntu-rstudio
+sudo docker run -d -p 8787:8787 eddelbuettel/debian-rstudio
 ```
 
 That will take a while to download the image the first time you run it.
@@ -57,7 +57,7 @@ curl -sSL https://get.docker.io/ubuntu/ | sudo sh
 And launch the docker container:
 
 ```bash
-sudo docker run -d -p 8787:8787 eddelbuettel/ubuntu-rstudio
+sudo docker run -d -p 8787:8787 eddelbuettel/debian-rstudio
 ```
 
 RStudio should now be at `http://localhost:8787` with login as mentioned above.
@@ -69,28 +69,32 @@ On a remote server, replace `localhost` with the public IP address.
 - Customize the user name, password, and email address used in git config:
 
 ```bash
-docker run -d -p 8787:8787 -e USER=<username> -e PASSWORD=<password> -e EMAIL=you@somewhere.com eddelbuettel/ubuntu-rstudio
+docker run -d -p 8787:8787 -e USER=<username> -e PASSWORD=<password> -e EMAIL=you@somewhere.com eddelbuettel/debian-rstudio
 ```
 
 - Launch an R terminal session instead of using Rstudio
 
 ```bash
-docker run --rm -it eddelbuettel/ubuntu-rstudio /usr/bin/R
+docker run --rm -it eddelbuettel/debian-rstudio /usr/bin/R
 ```
 
 - Launch a bash session
 
 ```bash
-docker run --rm -it eddelbuettel/ubuntu-rstudio /bin/bash
+docker run --rm -it eddelbuettel/debian-rstudio /bin/bash
 ```
 
 - Link the container to a local folder (directory) using the `-v` option
 (linux only?). This acts much like running `R` in the working directory:
 
 ```bash
-docker run --rm -it -v $(pwd):/home/rstudio/$(basename "$PWD") eddelbuettel/ubuntu-rstudio /usr/bin/R
+docker run --rm -it -v $(pwd):/home/rstudio/$(basename "$PWD") eddelbuettel/debian-rstudio /usr/bin/R
 ```
 
+- Use a lighter weight RStudio image: the commands above use the image
+named `eddelbuettel/debian-rstudio` from the Docker Hub, which includes many
+commonly used R packages (see Dockerfile under `ropensci/` in thsi repo).
+For a lighter-weight image, use `cboettig/rstudio`.
 
 ## Author
 
