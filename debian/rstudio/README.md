@@ -93,7 +93,7 @@ docker run --rm -it -v $(pwd):/home/rstudio/$(basename "$PWD") eddelbuettel/debi
 
 - Use a lighter weight RStudio image: the commands above use the image
 named `eddelbuettel/debian-rstudio` from the Docker Hub, which includes many
-commonly used R packages (see Dockerfile under `ropensci/` in thsi repo).
+commonly used R packages (see Dockerfile under `ropensci/` in this repo).
 For a lighter-weight image, use `cboettig/rstudio`.
 
 ## Author
