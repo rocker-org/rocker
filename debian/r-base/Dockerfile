@@ -10,18 +10,13 @@ MAINTAINER Dirk Eddelbuettel edd@debian.org
 RUN apt-get update -qq \
 && apt-get dist-upgrade -y
 
-## Add Debian unstable to get R 3.1.1 (release 2014-07-10) which has not 
-## yet migrated to testing
-## No longer needed as of Sep 2014
-# #RUN echo "deb http://http.debian.net/debian unstable main" > /etc/apt/sources.list.d/unstable.list
-# #RUN apt-get update -qq
-
 ## Now install R and littler, and create a link for littler in /usr/local/bin
 RUN apt-get update -qq \
 &&  apt-get install -y --no-install-recommends \
     ed \
     less \
     littler \
+    locales \
     r-base \
     r-base-dev \
     r-recommended \
@@ -34,8 +29,14 @@ RUN apt-get update -qq \
 ## Set a default CRAN Repo
 RUN echo 'options("repos"="http://cran.rstudio.com", encoding="UTF-8")' >> /etc/R/Rprofile.site
 
-## Makes a default user available via runtime flag `--user docker` 
-## Note: useradd is more minimal than adduser, doesn't create home directory, etc
+## Set a default user. Available via runtime flag `--user docker` 
 RUN useradd docker
-## Add user to 'staff' group, granting them write privileges to /usr/local/lib
+## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
 RUN addgroup docker staff
+
+## Configure default locale
+RUN dpkg-reconfigure locales \
+    && locale-gen C.UTF-8 \
+    && /usr/sbin/update-locale LANG=C.UTF-8
+ENV LC_ALL C.UTF-8
+
