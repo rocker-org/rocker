@@ -23,7 +23,6 @@ RUN apt-get update -qq \
     vim-tiny \
     wget \
 &&  ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r \
-&&  ln -s /usr/share/doc/littler/examples/install2.r /usr/local/bin/install2.r \
 &&  install.r docopt
 
 ## Set a default CRAN Repo
@@ -42,9 +41,14 @@ ENV LC_ALL C.UTF-8
 
 
 ## Install the most recent littler scripts 
-WORKDIR /usr/local/bin
-RUN wget --no-check-certificate https://github.com/eddelbuettel/littler/raw/master/examples/install2.r \
+WORKDIR /usr/share/doc/littler/examples/
+RUN rm install2.r \
+&&  wget --no-check-certificate https://github.com/cboettig/littler/raw/master/examples/install2.r \
 &&  wget --no-check-certificate https://github.com/eddelbuettel/littler/raw/master/examples/installGithub.r \
-&&  wget --no-check-certificate https://github.com/eddelbuettel/littler/raw/master/examples/testInstalled.r
+&&  wget --no-check-certificate https://github.com/eddelbuettel/littler/raw/master/examples/testInstalled.r \
+&&  chmod a+x install2.r installGithub.r testInstalled.r \
+&&  ln -s /usr/share/doc/littler/examples/install2.r /usr/local/bin/install2.r \
+&&  ln -s /usr/share/doc/littler/examples/installGithub.r /usr/local/bin/installGithub.r \
+&&  ln -s /usr/share/doc/littler/examples/testInstalled.r /usr/local/bin/testInstalled.r
 WORKDIR /
 

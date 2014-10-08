@@ -37,7 +37,7 @@ RUN apt-get update && apt-get build-dep -y \
 
 ## Finally ready to install the R packages.  NOTE: failure to install a package doesn't throw an image build error. 
 ## Install devtools, ggplot2, dplyr, tidyr + full suggests lists
-RUN install2.r --error --deps TRUE \
+RUN install2.r --error --deps \
     devtools \
     dplyr \
     ggplot2 \
