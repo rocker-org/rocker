@@ -36,8 +36,8 @@ RUN apt-get update && apt-get build-dep -y \
     r-cran-xml 
 
 ## Finally ready to install the R packages.  NOTE: failure to install a package doesn't throw an image build error. 
-## Install devtools, ggplot2, dplyr, tidyr + full suggests lists 
-RUN install2.r \
+## Install devtools, ggplot2, dplyr, tidyr + full suggests lists
+RUN install2.r --error --deps TRUE \
     devtools \
     dplyr \
     ggplot2 \
@@ -52,6 +52,6 @@ RUN install2.r \
     rm -rf /tmp/downloaded_packages/
 
 ## Add a few github repos where the CRAN version isn't sufficiently recent (e.g. has outstanding bugs) 
-RUN Rscript -e 'devtools::install_github(c("hadley/reshape"));'
+RUN installGithub.r hadley/reshape
 
 
