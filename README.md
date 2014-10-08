@@ -29,9 +29,13 @@ Work in progress; talk to @eddelbuettel and @cboettig about how to get involved.
 | rstudio (base plus RStudio Server)            | [good](https://registry.hub.docker.com/u/eddelbuettel/ubuntu-rstudio/)
 | hadleyverse (rstudio plus Hadley packages)    | [good](https://registry.hub.docker.com/u/eddelbuettel/ubuntu-hadleyverse/)
 
+## License
+
+The Dockerfiles in this repository is licensed under the GPL 2 or later.
+
 ## Trademarks ##
 
-RStudio is registered trademarks of RStudio, Inc.  The use
+RStudio is a registered trademark of RStudio, Inc.  The use
 of the trademarked term RStudio and the distribution
 of the RStudio binaries through the images hosted on
 [hub.docker.com](https://registry.hub.docker.com/) has been granted
