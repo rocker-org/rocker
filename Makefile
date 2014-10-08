@@ -13,6 +13,16 @@ second: debian-r-devel debian-rstudio ubuntu-rstudio ubuntu-r-devel
 third: debian-hadleyverse ubuntu-hadleyverse
 
 
+debian:
+	make debian-r-base
+	make debian-rstudio debian-r-devel
+	make debian-hadleyverse
+
+ubuntu:
+	make ubuntu-r-base
+	make ubuntu-rstudio ubuntu-r-devel
+	make ubuntu-hadleyverse
+
 debian-r-base: debian/r-base/Dockerfile
 	docker build $(FLAGS) -t eddelbuettel/debian-r-base debian/r-base
 
