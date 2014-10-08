@@ -3,8 +3,8 @@
 ## start with the Debian testing
 FROM debian:testing
 
-## That's me
-MAINTAINER Dirk Eddelbuettel edd@debian.org
+## This handle reaches Carl and Dirk
+MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
 
 ## Remain current
 RUN apt-get update -qq \

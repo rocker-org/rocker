@@ -1,6 +1,8 @@
 ## Start with the rstudio image providing 'base R' as well as RStudio based on Debian testing
 FROM eddelbuettel/ubuntu-hadleyverse
-MAINTAINER Carl Boettiger cboettig@ropensci.org
+
+## This handle reaches Carl and Dirk
+MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
 
 ## Refresh package list and upgrade
 RUN apt-get -qq update && apt-get -qqy dist-upgrade
