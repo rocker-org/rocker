@@ -23,7 +23,6 @@ RUN apt-get update -qq \
     vim-tiny \
     wget \
 &&  ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r \
-&&  ln -s /usr/share/doc/littler/examples/install2.r /usr/local/bin/install2.r \
 &&  install.r docopt
 
 ## Set a default CRAN Repo
@@ -41,21 +40,15 @@ RUN dpkg-reconfigure locales \
 ENV LC_ALL C.UTF-8
 
 
-
-## Install the most recent littler from source
-
-RUN apt-get update \
-&&  apt-get build-dep -y littler \
-&&  apt-get install autoconf git \
-&&  git clone https://github.com/eddelbuettel/littler.git \
-&&  /littler/./bootstrap \
-&&  ln -s /littler/examples/install.r /usr/local/bin/install.r \
-&&  ln -s /littler/examples/install2.r /usr/local/bin/install2.r \
-&&  ln -s /littler/examples/installGithub.r /usr/local/bin/installGithub.r \
-&&  ln -s /littler/examples/testInstalled.r /usr/local/bin/testInstalled.r \
-&& make clean
-
-## Hmm, this build-dep & clone will increase the image size... 
-## Not sure how best to clean up.  
-
+## Install the most recent littler scripts 
+WORKDIR /usr/share/doc/littler/examples/
+RUN rm install2.r \
+&&  wget --no-check-certificate https://github.com/cboettig/littler/raw/master/examples/install2.r \
+&&  wget --no-check-certificate https://github.com/eddelbuettel/littler/raw/master/examples/installGithub.r \
+&&  wget --no-check-certificate https://github.com/eddelbuettel/littler/raw/master/examples/testInstalled.r \
+&&  chmod a+x install2.r installGithub.r testInstalled.r \
+&&  ln -s /usr/share/doc/littler/examples/install2.r /usr/local/bin/install2.r \
+&&  ln -s /usr/share/doc/littler/examples/installGithub.r /usr/local/bin/installGithub.r \
+&&  ln -s /usr/share/doc/littler/examples/testInstalled.r /usr/local/bin/testInstalled.r
+WORKDIR /
 
