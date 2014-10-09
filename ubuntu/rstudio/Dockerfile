@@ -1,6 +1,8 @@
 ## Start with Dirk Eddelbuettel's R image, based on minimal ubuntu:latest and the current R release.
 FROM eddelbuettel/ubuntu-r-base
-MAINTAINER Carl Boettiger cboettig@ropensci.org
+
+## This handle reaches Carl and Dirk
+MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
 
 ## discourage apt from prompting the user for input
 ENV DEBIAN-FRONTEND noninteractive

@@ -3,8 +3,8 @@
 ## start with the latest ubuntu
 FROM ubuntu:latest
 
-## That's me
-MAINTAINER Dirk Eddelbuettel edd@debian.org
+## This handle reaches Carl and Dirk
+MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
 
 ## Remain current
 RUN apt-get update -qq \
@@ -36,3 +36,9 @@ RUN apt-get update -qq \
 
 ## Set a default CRAN Repo
 RUN echo 'options("repos"="http://cran.rstudio.com", encoding="UTF-8")' >> /etc/R/Rprofile.site
+
+## Makes a default user available via runtime flag `--user docker` 
+## Note: useradd is more minimal than adduser, doesn't create home directory, etc
+RUN useradd docker
+## Add user to 'staff' group, granting them write privileges to /usr/local/lib
+RUN addgroup docker staff

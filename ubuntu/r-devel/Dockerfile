@@ -3,8 +3,8 @@
 ## start with the Docker 'base R' Ubuntu-based image
 FROM eddelbuettel/ubuntu-r-base
 
-## That's me
-MAINTAINER Dirk Eddelbuettel edd@debian.org
+## This handle reaches Carl and Dirk
+MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
 
 ## Remain current
 RUN apt-get update -qq \
@@ -12,7 +12,7 @@ RUN apt-get update -qq \
 
 ## From the Build-Depends of the Debian R package, plus subversion
 RUN apt-get update -qq \
-&& apt-get install -y --no-install-recommends 
+&& apt-get install -y --no-install-recommends \ 
    bash-completion \
    bison \
    debhelper \

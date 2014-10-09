@@ -1,6 +1,8 @@
 ## Start with the rstudio image providing 'base R' as well as RStudio based on Debian testing
 FROM eddelbuettel/debian-rstudio
-MAINTAINER Carl Boettiger cboettig@ropensci.org
+
+## This handle reaches Carl and Dirk
+MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
 
 ## Add CRAN binaries and update
 RUN echo 'deb http://debian-r.debian.net/debian-r/ unstable main' >> /etc/apt/sources.list \

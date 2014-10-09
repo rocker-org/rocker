@@ -7,8 +7,8 @@
 # Also provides related development and dynamic documentation tools (compilers, pandoc, latex)
 # and inherits the rstudio-server and git tools from the base image, rstudio.
 
-FROM eddelbuettel/ubuntu-rstudio 
-MAINTAINER Carl Boettiger cboettig@ropensci.org
+## This handle reaches Carl and Dirk
+MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
 
 ## Add CRAN binaries and update
 RUN add-apt-repository -s -y ppa:marutter/c2d4u 
@@ -43,7 +43,7 @@ RUN install2.r \
     ggplot2 \
     httr \
     knitr \
-    rcpp \
+    Rcpp \
     reshape2 \
     rmarkdown \
     roxygen2 \

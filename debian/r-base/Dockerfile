@@ -3,18 +3,12 @@
 ## start with the Debian testing
 FROM debian:testing
 
-## That's me
-MAINTAINER Dirk Eddelbuettel edd@debian.org
+## This handle reaches Carl and Dirk
+MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
 
 ## Remain current
 RUN apt-get update -qq \
 && apt-get dist-upgrade -y
-
-## Add Debian unstable to get R 3.1.1 (release 2014-07-10) which has not 
-## yet migrated to testing
-## No longer needed as of Sep 2014
-# #RUN echo "deb http://http.debian.net/debian unstable main" > /etc/apt/sources.list.d/unstable.list
-# #RUN apt-get update -qq
 
 ## Now install R and littler, and create a link for littler in /usr/local/bin
 RUN apt-get update -qq \
@@ -22,6 +16,7 @@ RUN apt-get update -qq \
     ed \
     less \
     littler \
+    locales \
     r-base \
     r-base-dev \
     r-recommended \
@@ -33,3 +28,34 @@ RUN apt-get update -qq \
 
 ## Set a default CRAN Repo
 RUN echo 'options("repos"="http://cran.rstudio.com", encoding="UTF-8")' >> /etc/R/Rprofile.site
+
+## Set a default user. Available via runtime flag `--user docker` 
+RUN useradd docker
+## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
+RUN addgroup docker staff
+
+## Configure default locale
+RUN dpkg-reconfigure locales \
+    && locale-gen C.UTF-8 \
+    && /usr/sbin/update-locale LANG=C.UTF-8
+ENV LC_ALL C.UTF-8
+
+
+
+## Install the most recent littler from source
+
+RUN apt-get update \
+&&  apt-get build-dep -y littler \
+&&  apt-get install autoconf git \
+&&  git clone https://github.com/eddelbuettel/littler.git \
+&&  /littler/./bootstrap \
+&&  ln -s /littler/examples/install.r /usr/local/bin/install.r \
+&&  ln -s /littler/examples/install2.r /usr/local/bin/install2.r \
+&&  ln -s /littler/examples/installGithub.r /usr/local/bin/installGithub.r \
+&&  ln -s /littler/examples/testInstalled.r /usr/local/bin/testInstalled.r \
+&& make clean
+
+## Hmm, this build-dep & clone will increase the image size... 
+## Not sure how best to clean up.  
+
+
