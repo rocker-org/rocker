@@ -37,11 +37,14 @@ RUN apt-get update && apt-get build-dep -y \
     r-cran-rsqlite.extfuns \
     r-cran-xml 
 
-RUN install2.r -r http://bioconductor.org/packages/2.13/bioc BiocInstaller
+RUN install2.r -r http://bioconductor.org/packages/2.13/bioc \
+    BiocInstaller \
+    && rm -rf /tmp/downloaded_packages/
+
 
 ## Finally ready to install the R packages.  NOTE: failure to install a package doesn't throw an image build error. 
 ## Install devtools, ggplot2, dplyr, tidyr + full suggests lists
-RUN install2.r --error --deps \
+RUN install2.r --error --deps TRUE \
     devtools \
     dplyr \
     ggplot2 \
