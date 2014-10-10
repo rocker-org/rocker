@@ -1,5 +1,5 @@
 ## Start with the rstudio image providing 'base R' as well as RStudio based on Debian testing
-FROM eddelbuettel/debian-rstudio
+FROM rocker/rstudio
 
 ## This handle reaches Carl and Dirk
 MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
