@@ -9,27 +9,30 @@ Work in progress; talk to @eddelbuettel and @cboettig about how to get involved.
 
 ## Status ##
 
-### Debian-based Docker Containers ###
+### Base Docker Containers ###
+
 
 | Docker Container Source on GitHub             | Docker Hub Build Status and URL
 | :---------------------------------------      | :-----------------------------------------
-| r-base (base package to build from)           | [good](https://registry.hub.docker.com/u/eddelbuettel/debian-r-base/)
-| r-devel (base plus R-devel from SVN)          | [good](https://registry.hub.docker.com/u/eddelbuettel/debian-r-devel/)
-| r-devel-san (base, SVN's R-devel and SAN)     | [good](https://registry.hub.docker.com/u/eddelbuettel/debian-r-devel-san/)
-| rstudio (base plus RStudio Server)            | [good](https://registry.hub.docker.com/u/eddelbuettel/debian-rstudio/)
-| hadleyverse (rstudio plus Hadley packages)    | [good](https://registry.hub.docker.com/u/eddelbuettel/debian-hadleyverse/)
-| ropensci (hadleyverse plus rOpenSci packages) | [good](https://registry.hub.docker.com/u/eddelbuettel/debian-ropensci/)
+| r-base (base package to build from)           | [good](https://registry.hub.docker.com/repos/rocker/r-base/)
+| r-devel (base plus R-devel from SVN)          | [good](https://registry.hub.docker.com/repos/rocker/r-devel/)
+| rstudio (base plus RStudio Server)            | [good](https://registry.hub.docker.com/repos/rocker/rstudio/)
 
-### Ubuntu-based Docker Containers ###
+
+### Use cases ###
+
+The rocker project also hosts Docker images illustrating particular use cases. More information
+about these can be found in their respective respositories on [rocker-org](https://github.com/rocker-org)
 
 | Docker Container Source on GitHub             | Docker Hub Build Status and URL
 | :---------------------------------------      | :-----------------------------------------
-| r-base (base package to build from)           | [good](https://registry.hub.docker.com/u/eddelbuettel/ubuntu-r-base/)
-| r-devel (base plus R-devel from SVN)          | [good](https://registry.hub.docker.com/u/eddelbuettel/ubuntu-r-devel/)
-| rstudio (base plus RStudio Server)            | [good](https://registry.hub.docker.com/u/eddelbuettel/ubuntu-rstudio/)
-| hadleyverse (rstudio plus Hadley packages)    | [good](https://registry.hub.docker.com/u/eddelbuettel/ubuntu-hadleyverse/)
+| r-devel-san (base, SVN's R-devel and SAN)     | [good](https://registry.hub.docker.com/repos/rocker/r-devel-san/)
+| hadleyverse (rstudio plus Hadley packages)    | [good](https://registry.hub.docker.com/repos/rocker/hadleyverse/)
+| ropensci (hadleyverse + rOpenSci packages)    | [good](https://registry.hub.docker.com/repos/rocker/ropensci/)
 
-## License
+Anyone interested in proposing or collaborating on additional use cases should [get in touch](http://github.com/rocker-org/rocker/issues)
+
+## License ##
 
 The Dockerfiles in this repository is licensed under the GPL 2 or later.
 
