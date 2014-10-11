@@ -22,8 +22,15 @@ RUN apt-get update -qq \
     r-recommended \
     vim-tiny \
     wget \
+&&  install.r docopt \
+&&  cd /tmp/ \
+&&  wget http://dirk.eddelbuettel.com/code/debian/testing/littler_0.2.0.1-1_amd64.deb \
+&&  dpkg -i littler_0.2.0.1-1_amd64.deb \
+&&  rm littler_0.2.0.1-1_amd64.deb \
 &&  ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r \
-&&  install.r docopt
+&&  ln -s /usr/share/doc/littler/examples/install2.r /usr/local/bin/install2.r \
+&&  ln -s /usr/share/doc/littler/examples/installGithub.r /usr/local/bin/installGithub.r \
+&&  ln -s /usr/share/doc/littler/examples/testInstalled.r /usr/local/bin/testInstalled.r
 
 ## Set a default CRAN Repo
 RUN echo 'options("repos"="http://cran.rstudio.com", encoding="UTF-8")' >> /etc/R/Rprofile.site
@@ -40,15 +47,15 @@ RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 ENV LC_ALL en_US.UTF-8
 
 
-## Install the most recent littler scripts 
-WORKDIR /usr/share/doc/littler/examples/
-RUN rm install2.r \
-&&  wget --no-check-certificate https://github.com/cboettig/littler/raw/master/examples/install2.r \
-&&  wget --no-check-certificate https://github.com/eddelbuettel/littler/raw/master/examples/installGithub.r \
-&&  wget --no-check-certificate https://github.com/eddelbuettel/littler/raw/master/examples/testInstalled.r \
-&&  chmod a+x install2.r installGithub.r testInstalled.r \
-&&  ln -s /usr/share/doc/littler/examples/install2.r /usr/local/bin/install2.r \
-&&  ln -s /usr/share/doc/littler/examples/installGithub.r /usr/local/bin/installGithub.r \
-&&  ln -s /usr/share/doc/littler/examples/testInstalled.r /usr/local/bin/testInstalled.r
-WORKDIR /
+# ## Install the most recent littler scripts 
+# WORKDIR /usr/share/doc/littler/examples/
+# RUN rm install2.r \
+# &&  wget --no-check-certificate https://github.com/cboettig/littler/raw/master/examples/install2.r \
+# &&  wget --no-check-certificate https://github.com/eddelbuettel/littler/raw/master/examples/installGithub.r \
+# &&  wget --no-check-certificate https://github.com/eddelbuettel/littler/raw/master/examples/testInstalled.r \
+# &&  chmod a+x install2.r installGithub.r testInstalled.r \
+# &&  ln -s /usr/share/doc/littler/examples/install2.r /usr/local/bin/install2.r \
+# &&  ln -s /usr/share/doc/littler/examples/installGithub.r /usr/local/bin/installGithub.r \
+# &&  ln -s /usr/share/doc/littler/examples/testInstalled.r /usr/local/bin/testInstalled.r
+# WORKDIR /
 
