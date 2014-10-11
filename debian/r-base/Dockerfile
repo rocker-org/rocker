@@ -22,7 +22,6 @@ RUN apt-get update -qq \
     r-recommended \
     vim-tiny \
     wget \
-&&  install.r docopt \
 &&  cd /tmp/ \
 &&  wget http://dirk.eddelbuettel.com/code/debian/testing/littler_0.2.0.1-1_amd64.deb \
 &&  dpkg -i littler_0.2.0.1-1_amd64.deb \
@@ -30,7 +29,8 @@ RUN apt-get update -qq \
 &&  ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r \
 &&  ln -s /usr/share/doc/littler/examples/install2.r /usr/local/bin/install2.r \
 &&  ln -s /usr/share/doc/littler/examples/installGithub.r /usr/local/bin/installGithub.r \
-&&  ln -s /usr/share/doc/littler/examples/testInstalled.r /usr/local/bin/testInstalled.r
+&&  ln -s /usr/share/doc/littler/examples/testInstalled.r /usr/local/bin/testInstalled.r \
+&&  install.r docopt 
 
 ## Set a default CRAN Repo
 RUN echo 'options("repos"="http://cran.rstudio.com", encoding="UTF-8")' >> /etc/R/Rprofile.site
