@@ -1,15 +1,14 @@
 ## rocker
 
-### Overview ##
+### Overview 
 
 Dockerfiles for different Docker containers of interest to R users.
 
-### Status ##
+### Status 
 
 This is work in progress; talk to @eddelbuettel and @cboettig about how to get involved.
 
-#### Base Docker Containers ###
-
+#### Base Docker Containers 
 
 | Docker Container Source on GitHub             | Docker Hub Build Status and URL
 | :---------------------------------------      | :-----------------------------------------
@@ -18,7 +17,7 @@ This is work in progress; talk to @eddelbuettel and @cboettig about how to get i
 | rstudio (base plus RStudio Server)            | [good](https://registry.hub.docker.com/repos/rocker/rstudio/)
 
 
-#### Use cases ###
+#### Use cases 
 
 The rocker project also hosts Docker images illustrating particular use cases. More information
 about these can be found in their respective respositories on [rocker-org](https://github.com/rocker-org)
@@ -31,11 +30,22 @@ about these can be found in their respective respositories on [rocker-org](https
 
 Anyone interested in proposing or collaborating on additional use cases should [get in touch](http://github.com/rocker-org/rocker/issues)
 
-### License ##
+#### Debian-based
+
+After experimenting with creating containers based on both Debian and Ubuntu,
+we are now focusing on using just Debian. For users, the experience is essentially
+identical. For us, Debian's testing distribution gives us a trusted source in
+the form of rolling releases, with software which is often slightly ahead of
+what it in Ubuntu. Moreover, we do not have to create two (near identical)
+sets of Dockerfile, and manage only half the containers.
+
+User who want to deploy Ubuntu instead can easily modify our Dockerfiles.
+
+### License 
 
 The Dockerfiles in this repository are licensed under the GPL 2 or later.
 
-### Trademarks ##
+### Trademarks 
 
 RStudio is a registered trademark of RStudio, Inc.  The use
 of the trademarked term RStudio and the distribution
