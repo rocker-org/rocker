@@ -33,13 +33,15 @@ Anyone interested in proposing or collaborating on additional use cases should [
 #### Debian-based
 
 After experimenting with creating containers based on both Debian and Ubuntu,
-we are now focusing on using just Debian. For users, the experience is essentially
-identical. For us, Debian's testing distribution gives us a trusted source in
-the form of rolling releases, with software which is often slightly ahead of
-what it in Ubuntu. Moreover, we do not have to create two (near identical)
-sets of Dockerfile, and manage only half the containers.
+we are now focusing on using just Debian. For users, the experience is
+essentially identical. For us, Debian's testing distribution provides us with
+a trusted source in the form of rolling releases containing software which is
+often slightly ahead of what it in Ubuntu. Moreover, we do not have to create
+two (near identical) sets of Dockerfiles, and need to manage builds for only
+half the containers.
 
-User who want to deploy Ubuntu instead can easily modify our Dockerfiles.
+Users who want to deploy Ubuntu instead can easily modify our Dockerfiles to
+do so.
 
 ### License 
 
