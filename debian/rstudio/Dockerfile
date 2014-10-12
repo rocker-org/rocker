@@ -11,12 +11,10 @@ ENV PATH /usr/lib/rstudio-server/bin/:$PATH
 ## Download and install RStudio server
 RUN apt-get update && apt-get install -y \
     git \
-    locales \
     libcurl4-openssl-dev \
     psmisc \
     supervisor \
     sudo \
-&& dpkg-reconfigure locales \
 && wget -q http://ftp.us.debian.org/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb \ 
 && dpkg -i libssl0.9.8_0.9.8o-4squeeze14_amd64.deb && rm libssl0.9.8_0.9.8o-4squeeze14_amd64.deb \
 && (wget -q https://s3.amazonaws.com/rstudio-server/current.ver -O currentVersion.txt \
