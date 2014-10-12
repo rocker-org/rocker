@@ -11,6 +11,7 @@ RUN apt-get update -qq \
 && apt-get dist-upgrade -y
 
 ## Now install R and littler, and create a link for littler in /usr/local/bin
+## NB until littler 0.2.1 is out, we are filling in a local deb package 
 RUN apt-get update -qq \
 &&  apt-get install -y --no-install-recommends \
     ed \
@@ -45,17 +46,4 @@ RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 && locale-gen en_US.utf8 \
 && /usr/sbin/update-locale LANG=en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
-
-
-# ## Install the most recent littler scripts 
-# WORKDIR /usr/share/doc/littler/examples/
-# RUN rm install2.r \
-# &&  wget --no-check-certificate https://github.com/cboettig/littler/raw/master/examples/install2.r \
-# &&  wget --no-check-certificate https://github.com/eddelbuettel/littler/raw/master/examples/installGithub.r \
-# &&  wget --no-check-certificate https://github.com/eddelbuettel/littler/raw/master/examples/testInstalled.r \
-# &&  chmod a+x install2.r installGithub.r testInstalled.r \
-# &&  ln -s /usr/share/doc/littler/examples/install2.r /usr/local/bin/install2.r \
-# &&  ln -s /usr/share/doc/littler/examples/installGithub.r /usr/local/bin/installGithub.r \
-# &&  ln -s /usr/share/doc/littler/examples/testInstalled.r /usr/local/bin/testInstalled.r
-# WORKDIR /
 
