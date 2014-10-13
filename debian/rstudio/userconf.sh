@@ -20,3 +20,6 @@ echo '"\e[5~": history-search-backward' >> /etc/inputrc && echo '"\e[6~": histor
 ## Give user access over their own home directory
 chown -R $USER:$USER /home/$USER
 
+## Let user write to /usr/local/lib/R/site.library
+addgroup $USER staff
+
