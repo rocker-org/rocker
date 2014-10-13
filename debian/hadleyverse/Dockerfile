@@ -39,7 +39,7 @@ RUN apt-get update && apt-get build-dep -y \
 
 RUN install2.r -r http://bioconductor.org/packages/2.13/bioc \
     BiocInstaller \
-    && rm -rf /tmp/downloaded_packages/
+&& rm -rf /tmp/downloaded_packages/
 
 
 ## Finally ready to install the R packages.  NOTE: failure to install a package doesn't throw an image build error. 
@@ -55,10 +55,11 @@ RUN install2.r --error --deps TRUE \
     rmarkdown \
     roxygen2 \
     testthat \
-    tidyr && \
-    rm -rf /tmp/downloaded_packages/
+    tidyr \
+&& rm -rf /tmp/downloaded_packages/
 
 ## Add a few github repos where the CRAN version isn't sufficiently recent (e.g. has outstanding bugs) 
-RUN installGithub.r hadley/reshape
+RUN installGithub.r hadley/reshape \
+&& rm -rf /tmp/downloaded_packages/
 
 
