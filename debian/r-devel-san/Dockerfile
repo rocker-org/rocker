@@ -85,7 +85,8 @@ RUN cd /tmp/R-devel \
                --program-suffix=dev \
                --disable-openmp \
 && make \
-&& make install 
+&& make install \
+&& make clean
 
 ## Set Renviron.site to get libs from base R install
 RUN echo "R_LIBS_SITE=\${R_LIBS_SITE-'/usr/local/lib/R/site-library:/usr/local/lib/R/library:/usr/lib/R/library'}" > /usr/local/lib/R/etc/Renviron.site
