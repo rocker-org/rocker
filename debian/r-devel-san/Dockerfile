@@ -1,7 +1,7 @@
 ## Emacs, make this -*- mode: sh; -*-
 
 ## start with the Docker 'base R' Debian-based image
-FROM eddelbuettel/debian-r-base
+FROM rocker/r-base
 
 ## This handle reaches Carl and Dirk
 MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
@@ -86,7 +86,7 @@ RUN cd /tmp/R-devel \
                --disable-openmp \
 && make \
 && make install \
-&& rm -rf /tmp/r-devel
+&& make clean
 
 ## Set Renviron.site to get libs from base R install
 RUN echo "R_LIBS_SITE=\${R_LIBS_SITE-'/usr/local/lib/R/site-library:/usr/local/lib/R/library:/usr/lib/R/library'}" > /usr/local/lib/R/etc/Renviron.site

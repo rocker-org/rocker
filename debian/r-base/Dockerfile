@@ -35,7 +35,7 @@ RUN apt-get update -qq \
 &&  rm -rf /tmp/downloaded_packages/
 
 ## Set a default CRAN Repo
-RUN echo 'options("repos"="http://cran.rstudio.com", encoding="UTF-8")' >> /etc/R/Rprofile.site
+RUN echo 'options("repos"="http://cran.rstudio.com")' >> /etc/R/Rprofile.site
 
 ## Set a default user. Available via runtime flag `--user docker` 
 RUN useradd docker
