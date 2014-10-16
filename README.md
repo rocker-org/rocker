@@ -12,9 +12,9 @@ This is work in progress; talk to @eddelbuettel and @cboettig about how to get i
 
 | Docker Container Source on GitHub             | Docker Hub Build Status and URL
 | :---------------------------------------      | :-----------------------------------------
-| r-base (base package to build from)           | [good](https://registry.hub.docker.com/repos/rocker/r-base/)
-| r-devel (base plus R-devel from SVN)          | [good](https://registry.hub.docker.com/repos/rocker/r-devel/)
-| rstudio (base plus RStudio Server)            | [good](https://registry.hub.docker.com/repos/rocker/rstudio/)
+| r-base (base package to build from)           | [good](https://registry.hub.docker.com/u/rocker/r-base/)
+| r-devel (base plus R-devel from SVN)          | [good](https://registry.hub.docker.com/u/rocker/r-devel/)
+| rstudio (base plus RStudio Server)            | [good](https://registry.hub.docker.com/u/rocker/rstudio/)
 
 
 ## Use cases ##
@@ -24,9 +24,9 @@ about these can be found in their respective respositories on [rocker-org](https
 
 | Docker Container Source on GitHub             | Docker Hub Build Status and URL
 | :---------------------------------------      | :-----------------------------------------
-| r-devel-san (base, SVN's R-devel and SAN)     | [good](https://registry.hub.docker.com/repos/rocker/r-devel-san/)
-| hadleyverse (rstudio plus Hadley packages)    | [good](https://registry.hub.docker.com/repos/rocker/hadleyverse/)
-| ropensci (hadleyverse + rOpenSci packages)    | [good](https://registry.hub.docker.com/repos/rocker/ropensci/)
+| r-devel-san (base, SVN's R-devel and SAN)     | [good](https://registry.hub.docker.com/u/rocker/r-devel-san/)
+| hadleyverse (rstudio plus Hadley packages)    | [good](https://registry.hub.docker.com/u/rocker/hadleyverse/)
+| ropensci (hadleyverse + rOpenSci packages)    | [good](https://registry.hub.docker.com/u/rocker/ropensci/)
 
 Anyone interested in proposing or collaborating on additional use cases should [get in touch](http://github.com/rocker-org/rocker/issues)
 
