@@ -7,6 +7,8 @@ EMAIL=${EMAIL:=rstudio@example.com}
 
 ## Configure user account name and password (used by rstudio)
 useradd -m $USER && echo "$USER:$PASSWORD" | chpasswd
+## User must own their home directory
+chown -R $USER /home/$USER
 
 ## Configure git user to avoid being harassed about this later
 git config --global user.name $USER
