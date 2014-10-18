@@ -17,11 +17,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
 && wget -q http://ftp.us.debian.org/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb \ 
 && dpkg -i libssl0.9.8_0.9.8o-4squeeze14_amd64.deb && rm libssl0.9.8_0.9.8o-4squeeze14_amd64.deb \
-&& (wget -q https://s3.amazonaws.com/rstudio-server/current.ver -O currentVersion.txt \
-&& ver=$(cat currentVersion.txt) \
+&& (ver=$(wget -qO- https://s3.amazonaws.com/rstudio-server/current.ver) \
 && wget -q http://download2.rstudio.org/rstudio-server-${ver}-amd64.deb \
 && dpkg -i rstudio-server-${ver}-amd64.deb \
-&& rm rstudio-server-*-amd64.deb currentVersion.txt )
+&& rm rstudio-server-*-amd64.deb )
 
 ## This shell script is executed by supervisord when it is run by CMD, configures env variables
 COPY userconf.sh /usr/bin/userconf.sh
