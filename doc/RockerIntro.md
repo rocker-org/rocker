@@ -1,7 +1,7 @@
 ## Introducing Rocker: Docker for R
 
 
-> You only know tow things about Docker. First, it uses Linux  
+> You only know two things about Docker. First, it uses Linux  
 > containers. Second, the Internet won't shut up about it.  
 >  
 > -- attributed to Solomon Hykes, Docker CEO
@@ -17,7 +17,7 @@ emulation of entire OS layer).  This also allows it to start almost
 instantly, require very little resources and hence permit an order of
 magnitude more deployments per hosts than a virtual machine.
 
-[Docker](http://www.docker.com) offeres a standard interface to creation,
+[Docker](http://www.docker.com) offers a standard interface to creation,
 distribution and deployment.  The _shipping container_ analogy is apt: just
 how shipping containers (via their standard size and "interface") allow
 global trade to prosper, Docker is aiming for nothing less for deployment.
@@ -74,7 +74,7 @@ Within the Rocker-org organization on GitHub, we are also working on
 
 ### Deprecation
 
-The Rocker effort supercedes and replaces earlier work by Dirk (in the
+The Rocker effort supersedes and replaces earlier work by Dirk (in the
 docker-debian-r and docker-ubuntu-r GitHub repositories) and Carl.  Please
 use the [Rocker GitHub repo](https://github.com/rocker-org/rocker) and
 [Rocker Containers from Docker.com](https://hub.docker.com/account/organizations/rocker/)
@@ -91,7 +91,7 @@ spin. Bug reports, comments, and suggestions are welcome; we suggest you use the
 [GitHub issue tracker](https://github.com/rocker-org/rocker/issues).
 
 
-### Acknowledgement
+### Acknowledgments
 
 We are very appreciative of all comments received by early adopters and
 testers. We also would like to thank RStudio for allowing us the
