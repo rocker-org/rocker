@@ -23,6 +23,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 && dpkg -i rstudio-server-${ver}-amd64.deb \
 && rm rstudio-server-*-amd64.deb currentVersion.txt )
 
+## Symlink pandoc, pandoc-citeproc so they are available system-wide
+## (so if a user installs rmarkdown they can immediately use it outside of RStudio)
+RUN ln -s /usr/lib/rstudio-server/bin/pandoc/pandoc /usr/local/bin \
+&& ln -s /usr/lib/rstudio-server/bin/pandoc/pandoc-citeproc /usr/local/bin
+
+
 ## This shell script is executed by supervisord when it is run by CMD, configures env variables
 COPY userconf.sh /usr/bin/userconf.sh
 
