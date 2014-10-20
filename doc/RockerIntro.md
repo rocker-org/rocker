@@ -35,7 +35,8 @@ go into more detail in order to remain short and introductory.
 ### So what is Rocker?
 
 [Rocker](https://github.com/rocker-org/rocker) is the the name of our
-[GitHub]((https://github.com/) repository contained with the RockerOrg GitHub organization.
+[GitHub](https://github.com/) repository contained with the 
+[Rocker-Org](https://github.com/rocker-org) GitHub organization.
 
 [Rocker](https://hub.docker.com/account/organizations/rocker/) is also the
 name the account under which the automated builds at [Docker](http://www.docker.com) provide
