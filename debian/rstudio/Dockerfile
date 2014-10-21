@@ -20,8 +20,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 && wget -q http://ftp.us.debian.org/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb \ 
 && dpkg -i libssl0.9.8_0.9.8o-4squeeze14_amd64.deb && rm libssl0.9.8_0.9.8o-4squeeze14_amd64.deb \
 && VER=$(wget -qO- https://s3.amazonaws.com/rstudio-server/current.ver) \
-|| VER=${VER} \
-&& wget -q http://download2.rstudio.org/rstudio-server-${VER}-amd64.deb \
+|| VER=${VER} 
+RUN wget -q http://download2.rstudio.org/rstudio-server-${VER}-amd64.deb \
 && dpkg -i rstudio-server-${VER}-amd64.deb \
 && rm rstudio-server-*-amd64.deb \
 && ln -s /usr/lib/rstudio-server/bin/pandoc/pandoc /usr/local/bin \
