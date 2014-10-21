@@ -26,7 +26,7 @@ processes. While its use (superficially) resembles the use of virtual
 machines, it is _much more lightweight_ as it operates at the level of a
 single process (rather than an emulation of entire OS layer).  This also
 allows it to start almost instantly, require very little resources and
-hence permit an order of magnitude more deployments per hosts than a
+hence permit an order of magnitude more deployments per host than a
 virtual machine.
 
 <!-- Guess it's not clear that the purpose is to package/distribute
