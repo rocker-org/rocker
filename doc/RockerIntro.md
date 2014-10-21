@@ -16,7 +16,9 @@ a noun when refering to the company.  You think they might have guessed
 how hopeless that request was, so I'm not going to insist we use it as an adjective...
 -->
 
+<!-- or maybe omit this
 ![](https://d3oypxn00j2a10.cloudfront.net/0.11.2/images/pages/brand_guidelines/small_v.png)
+-->
 
 [Docker](http://www.docker.com) is a relatively new [open
 source](https://github.com/docker/docker/tree/master/LICENSE) application
@@ -65,7 +67,7 @@ My only issue is that all Docker's tutorials start with interactive containers a
 
 ### So what is Rocker?
 
-![](https://en.gravatar.com/userimage/73204427/563567819bd642c7a9e3af9d8ddb7581.png?size=200)
+![](https://en.gravatar.com/userimage/73204427/563567819bd642c7a9e3af9d8ddb7581.png?size=100)
 
 At it's core, Rocker is a project for running R using Docker
 containers. We provide a collection of Dockerfiles and pre-built Docker
@@ -74,7 +76,7 @@ images that can be used and extended for many purposes.
 <!-- and also documentation?  -->
 
 [Rocker](https://github.com/rocker-org/rocker) is the the name of our
-[GitHub](https://github.com/) repository contained with the 
+[GitHub](https://github.com/) repository contained with the
 [Rocker-Org](https://github.com/rocker-org) GitHub organization.
 
 [Rocker](https://hub.docker.com/account/organizations/rocker/) is also the
