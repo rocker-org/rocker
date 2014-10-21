@@ -15,7 +15,6 @@ This is work in progress; talk to @eddelbuettel and @cboettig about how to get i
 | r-base (base package to build from)           | [good](https://registry.hub.docker.com/u/rocker/r-base/)
 | r-devel (base plus R-devel from SVN)          | [good](https://registry.hub.docker.com/u/rocker/r-devel/)
 | rstudio (base plus RStudio Server)            | [good](https://registry.hub.docker.com/u/rocker/rstudio/)
-| r-devel-san (base, SVN's R-devel and SAN)     | [good](https://registry.hub.docker.com/u/rocker/r-devel-san/)
 
 
 ## Use cases ##
@@ -27,6 +26,7 @@ about these can be found in their respective respositories on [rocker-org](https
 | :---------------------------------------      | :-----------------------------------------
 | hadleyverse (rstudio plus Hadley packages)    | [good](https://registry.hub.docker.com/u/rocker/hadleyverse/)
 | ropensci (hadleyverse + rOpenSci packages)    | [good](https://registry.hub.docker.com/u/rocker/ropensci/)
+| r-devel-san (base, SVN's R-devel and SAN)     | [good](https://registry.hub.docker.com/u/rocker/r-devel-san/)
 
 Anyone interested in proposing or collaborating on additional use cases should [get in touch](http://github.com/rocker-org/rocker/issues)
 
