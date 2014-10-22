@@ -1,8 +1,8 @@
 ## Introducing Rocker: Docker for R
 
 
-> You only know two things about Docker. First, it uses Linux
-> containers. Second, the Internet won't shut up about it.
+> You only know two things about Docker. First, it uses Linux  
+> containers. Second, the Internet won't shut up about it.  
 >
 > -- attributed to Solomon Hykes, Docker CEO
 
