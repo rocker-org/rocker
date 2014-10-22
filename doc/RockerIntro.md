@@ -37,16 +37,10 @@ containers](https://docs.docker.com/userguide/usingdocker/). A single
 machine can run hundreds of such containers, including multiple containers
 running the same image.
 
-
 [Docker](http://www.docker.com) introductions and tutorials are available.
 The [official online tutorial](https://www.docker.com/tryit/) is a good place to
 start; this post can not go into more detail in order to remain short and introductory.
 
-<!--
-DE: There is only so much time. I did do an Dockerfile tutorial at their site too
-
-Cool, where was that? should we link it?
--->
 
 ### So what is Rocker?
 
@@ -96,12 +90,6 @@ Within the Rocker-org organization on GitHub, we are also working on
 + [rocker-versioned](https://github.com/rocker-org/rocker-versioned)
   aims to provided containers with 'versioned' previous R releases and matching packages
 
-<!--
-DE: Let's not ask for more. We have yet to see actual contributions from our
-two organization colleagues (ahem...)
-
-indeed, touche!
--->
 
 ### Deprecation
 
@@ -110,10 +98,6 @@ docker-debian-r and docker-ubuntu-r GitHub repositories) and Carl.  Please
 use the [Rocker GitHub repo](https://github.com/rocker-org/rocker) and
 [Rocker Containers from Docker.com](https://hub.docker.com/account/organizations/rocker/)
 going forward.
-
-<!--
-DE: If you have a URL to add above ... URL for what? I think you mean https://github.com/ropensci/docker
--->
 
 
 ### Next Steps
