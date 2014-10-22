@@ -75,6 +75,8 @@ The Rocker project develops the following containers in the core Rocker reposito
   base R container as well an
   [RStudio Server](http://www.rstudio.com/products/rstudio/) instance
 
+We have settled on these three core images after earlier work in repositories
+such as docker-debian-r and docker-ubuntu-r. 
 
 #### Rocker Use Case Containers
 
@@ -89,6 +91,9 @@ Within the Rocker-org organization on GitHub, we are also working on
   instrumented version of R-devel via a recent compiler build
 + [rocker-versioned](https://github.com/rocker-org/rocker-versioned)
   aims to provided containers with 'versioned' previous R releases and matching packages
+
+Other repositories will probably be added as new needs and opportunities are
+identified. 
 
 
 ### Deprecation
