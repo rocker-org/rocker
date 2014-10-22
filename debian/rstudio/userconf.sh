@@ -7,8 +7,12 @@ EMAIL=${EMAIL:=rstudio@example.com}
 
 ## Configure user account name and password (used by rstudio)
 useradd -m $USER && echo "$USER:$PASSWORD" | chpasswd
-## User must own their home directory
-# chown -R $USER:$USER /home/$USER
+## User must own their home directory, or RStudio won't be able to load
+chown -R /home/$USER
+# We can't specify an arbitrary user if we're linking volumes
+
+## Set the password for the default user. (link to /home/docker/something)
+echo "docker:$PASSWORD" | chpasswd
 
 ## Configure git user to avoid being harassed about this later
 git config --global user.name $USER
