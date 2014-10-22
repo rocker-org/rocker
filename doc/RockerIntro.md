@@ -1,33 +1,13 @@
 ## Introducing Rocker: Docker for R
 
-<!--
-DE: I added breaking spaces on the quote on purpose. Let's keep'em.
--->
 
-> You only know two things about Docker. First, it uses Linux  
-> containers. Second, the Internet won't shut up about it.  
->   
+> You only know two things about Docker. First, it uses Linux
+> containers. Second, the Internet won't shut up about it.
+>
 > -- attributed to Solomon Hykes, Docker CEO
 
 ### So what is Docker?
 
-<!--
-Docker is also the name of the company
-
-Their Trademark terms of use request that we refer to the software as
-"Docker software" or similar term (e.g. as an ajective), and only use "Docker" as
-a noun when refering to the company.  You think they might have guessed
-how hopeless that request was, so I'm not going to insist we use it as an adjective...
-
-DE: I'd say we're fine as you added 'application and service' below.
--->
-
-<!--
-or maybe omit this
-![](https://d3oypxn00j2a10.cloudfront.net/0.11.2/images/pages/brand_guidelines/small_v.png)
-
-DE: I'd say omit so that we have just one logo: ours.
--->
 
 [Docker](http://www.docker.com) is a relatively new [open
 source](https://github.com/docker/docker/tree/master/LICENSE) application
@@ -39,16 +19,6 @@ single process (rather than an emulation of an entire OS layer).  This also
 allows it to start almost instantly, require very little resources and
 hence permit an order of magnitude more deployments per host than a
 virtual machine.
-
-<!--
-Guess it's not clear that the purpose is to package/distribute
-other software, as opposed to something you just install and use by itself?
-(or perhaps it's obvious via the analogy to VMs?)
-
-DE: I think those use cases are not quite worked out.  I do think one can 
-very much install and use by itself. I sometimes just want a Debian prompt 
-for 'apt-cache search ...'
--->
 
 [Docker](http://www.docker.com) offers a standard interface
 to creation, distribution and deployment. The _shipping
@@ -67,29 +37,15 @@ containers](https://docs.docker.com/userguide/usingdocker/). A single
 machine can run hundreds of such containers, including multiple containers
 running the same image.
 
-<!--
-Define: Dockerfile, image, container ...
-Ugh, not sure that helped. container vs image is probably particularly confusing. Do we
-need to explain layers? Docker hub?
-
-DE: I think it is fine as is.
--->
-
 
 [Docker](http://www.docker.com) introductions and tutorials are available.
 The [official online tutorial](https://www.docker.com/tryit/) is a good place to
 start; this post can not go into more detail in order to remain short and introductory.
 
 <!--
-Wasn't sure which tutorial you had in mind. Maybe we should link the
-interactive one instead? https://www.docker.com/tryit/
-
-DE: Yes, that is what I meant.
-
-My only issue is that all Docker's tutorials start with interactive 
-containers and none of them actually cover Dockerfiles...
-
 DE: There is only so much time. I did do an Dockerfile tutorial at their site too
+
+Cool, where was that? should we link it?
 -->
 
 ### So what is Rocker?
@@ -100,11 +56,6 @@ At its core, Rocker is a project for running [R](http://www.r-project.org) using
 containers. We provide a collection of Dockerfiles and pre-built Docker
 images that can be used and extended for many purposes.
 
-<!--
-and also documentation?
-
-DE: in time... no promises yet :)
--->
 
 [Rocker](https://github.com/rocker-org/rocker) is the the name of our
 [GitHub](https://github.com/) repository contained with the
@@ -146,11 +97,10 @@ Within the Rocker-org organization on GitHub, we are also working on
   aims to provided containers with 'versioned' previous R releases and matching packages
 
 <!--
-something about welcoming PRs for additional things here? not sure how we 
-want to handle that
-
 DE: Let's not ask for more. We have yet to see actual contributions from our
 two organization colleagues (ahem...)
+
+indeed, touche!
 -->
 
 ### Deprecation
@@ -162,7 +112,7 @@ use the [Rocker GitHub repo](https://github.com/rocker-org/rocker) and
 going forward.
 
 <!--
-DE: If you have a URL to add above ...
+DE: If you have a URL to add above ... URL for what? I think you mean https://github.com/ropensci/docker
 -->
 
 

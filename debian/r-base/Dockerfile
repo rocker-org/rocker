@@ -38,9 +38,13 @@ RUN apt-get update -qq \
 RUN echo 'options("repos"="http://cran.rstudio.com")' >> /etc/R/Rprofile.site
 
 ## Set a default user. Available via runtime flag `--user docker` 
-RUN useradd docker
 ## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
-RUN addgroup docker staff
+## User should also have & own a home directory (for rstudio or linked volumes to work properly). (could use adduser to create this automatically instead)
+RUN useradd docker \
+&& mkdir /home/docker \
+&& chown docker:docker /home/docker \
+&& addgroup docker staff
+
 
 ## Configure default locale
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
