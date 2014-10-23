@@ -81,7 +81,7 @@ RUN cd /tmp/R-devel \
                --program-suffix=dev \
 && make \
 && make install \
-&& rm -rf /tmp/r-devel
+&& rm -rf /tmp/R-devel
 
 ## Set Renviron.site to get libs from base R install
 RUN echo "R_LIBS_SITE=\${R_LIBS_SITE-'/usr/local/lib/R/site-library:/usr/local/lib/R/library:/usr/lib/R/library'}" > /usr/local/lib/R/etc/Renviron.site
