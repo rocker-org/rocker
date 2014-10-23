@@ -127,4 +127,5 @@ redistribution of their RStudio Server binary.
 [Dirk Eddelbuettel](http://dirk.eddelbuettel.com) and
 [Carl Boettiger](http://www.carlboettiger.info/)
 
-
+Published concurrently at [rOpenSci blog](http://ropensci.org/blog/)
+and [Dirk's blog](http://dirk.eddelbuettel.com/dirk).
