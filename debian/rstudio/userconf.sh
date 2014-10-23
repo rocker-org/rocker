@@ -4,15 +4,16 @@
 USER=${USER:=rstudio}
 PASSWORD=${PASSWORD:=rstudio}
 EMAIL=${EMAIL:=rstudio@example.com}
+UID=${UID:=1000}
 
+## Things get messy if we have more than one user.  Best to delete it.  
+usedel docker
 ## Configure user account name and password (used by rstudio)
-useradd -m $USER && echo "$USER:$PASSWORD" | chpasswd
+useradd -m $USER -u $UID && echo "$USER:$PASSWORD" | chpasswd
 ## User must own their home directory, or RStudio won't be able to load
-chown -R /home/$USER
-# We can't specify an arbitrary user if we're linking volumes
+## (Note this is only necessary if the user is linking a shared volume to a subdir of this directory)
+mkdir /home/$USER && chown /home/$USER
 
-## Set the password for the default user. (link to /home/docker/something)
-echo "docker:$PASSWORD" | chpasswd
 
 ## Configure git user to avoid being harassed about this later
 git config --global user.name $USER
