@@ -13,11 +13,11 @@
 source](https://github.com/docker/docker/tree/master/LICENSE) application
 and service, which is seeing interest across a number of areas. It
 uses recent Linux kernel features (containers, namespaces) to shield
-processes. While its use (superficially) resembles the use of virtual
+processes. While its use (superficially) resembles that of virtual
 machines, it is _much more lightweight_ as it operates at the level of a
 single process (rather than an emulation of an entire OS layer).  This also
 allows it to start almost instantly, require very little resources and
-hence permit an order of magnitude more deployments per host than a
+hence permits an order of magnitude more deployments per host than a
 virtual machine.
 
 [Docker](http://www.docker.com) offers a standard interface
@@ -37,8 +37,8 @@ containers](https://docs.docker.com/userguide/usingdocker/). A single
 machine can run hundreds of such containers, including multiple containers
 running the same image.
 
-[Docker](http://www.docker.com) introductions and tutorials are available.
-The [official online tutorial](https://www.docker.com/tryit/) is a good place to
+There are many good tutorials and introductory materials on [Docker](http://www.docker.com)
+on the web. The [official online tutorial](https://www.docker.com/tryit/) is a good place to
 start; this post can not go into more detail in order to remain short and introductory.
 
 
@@ -82,7 +82,7 @@ such as docker-debian-r and docker-ubuntu-r.
 
 Within the Rocker-org organization on GitHub, we are also working on
 
-+ [hadleyverse](https://registry.hub.docker.com/u/rocker/hadleyverse/) which
++ [Hadleyverse](https://registry.hub.docker.com/u/rocker/hadleyverse/) which
   extends the rstudio container with a number of Hadley packages
 + [rOpenSci](https://registry.hub.docker.com/u/rocker/ropensci/) which
   extends hadleyverse with a number of [rOpenSci](http://ropensci.org/) packages
@@ -121,11 +121,5 @@ We are very appreciative of all comments received by early adopters and
 testers. We also would like to thank RStudio for allowing us the
 redistribution of their RStudio Server binary.
 
-
-### Authors
-
-[Dirk Eddelbuettel](http://dirk.eddelbuettel.com) and
-[Carl Boettiger](http://www.carlboettiger.info/)
-
-Published concurrently at [rOpenSci blog](http://ropensci.org/blog/)
-and [Dirk's blog](http://dirk.eddelbuettel.com/blog).
+_Published concurrently at [rOpenSci blog](http://ropensci.org/blog/)
+and [Dirk's blog](http://dirk.eddelbuettel.com/blog)_
