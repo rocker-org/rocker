@@ -2,7 +2,7 @@
 
 ## Overview ##
 
-Dockerfiles for different Docker containers of interest to R users.
+Dockerfiles for different Docker containers of interest to R users. To get started right away, see the instructions on [using the RStudio image in our wiki](https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-Image)
 
 ## Status ##
 
