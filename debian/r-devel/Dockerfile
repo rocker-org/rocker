@@ -91,5 +91,7 @@ RUN echo 'options("repos"="http://cran.rstudio.com")' >> /usr/local/lib/R/etc/Rp
 
 RUN cd /usr/local/bin \
 && mv R Rdevel \
-&& mv Rscript Rscriptdevel
+&& mv Rscript Rscriptdevel \
+&& ln -s Rdevel RD \
+&& ln -s Rscriptdevel RDscript
 
