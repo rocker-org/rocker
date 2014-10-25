@@ -1,8 +1,8 @@
 # rocker #
 
-## Overview ##
+## Overview and Getting Started ##
 
-Dockerfiles for different Docker containers of interest to R users.
+This repository contains Dockerfiles for different Docker containers of interest to R users. To get started right away, ensure you have [Docker installed](https://docs.docker.com/installation/) and start a container with `docker run --rm -ti rocker/r-base` (see [here](https://docs.docker.com/reference/run/) for the `docker run` command options). In this case we are starting the `r-base` container (the base package to build from) in an interactive mode, see below for details of the other containers currently available. To get started on the `rstudio` container or its derivative containers (eg. `hadleyverse` and `ropensci`) you need to open a port, see the [instructions in the wiki](https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-Image). The [wiki](https://github.com/rocker-org/rocker/wiki) also contains further instructions and information on the project, including how to extend these images and contribute to development.
 
 ## Status ##
 
@@ -29,11 +29,6 @@ about these can be found in their respective respositories on [rocker-org](https
 | r-devel-san (base, SVN's R-devel and SAN)     | [good](https://registry.hub.docker.com/u/rocker/r-devel-san/)
 
 Anyone interested in proposing or collaborating on additional use cases should [get in touch](http://github.com/rocker-org/rocker/issues)
-
-
-## Getting Started ##
-
-See the **[rocker-org Wiki](https://github.com/rocker-org/rocker/wiki)** for more information on the project, including how to use or extend these images, contribute to development, and more!
 
 ## License ##
 
