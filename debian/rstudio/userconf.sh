@@ -12,7 +12,7 @@ userdel docker
 useradd -m $USER -u $UID && echo "$USER:$PASSWORD" | chpasswd
 ## User must own their home directory, or RStudio won't be able to load
 ## (Note this is only necessary if the user is linking a shared volume to a subdir of this directory)
-mkdir /home/$USER && chown /home/$USER
+mkdir /home/$USER && chown $USER:$USER /home/$USER
 
 
 ## Configure git user to avoid being harassed about this later
