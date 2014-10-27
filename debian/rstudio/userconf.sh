@@ -7,7 +7,7 @@ EMAIL=${EMAIL:=rstudio@example.com}
 UID=${UID:=1000}
 
 ## Things get messy if we have more than one user.  Best to delete it.  
-usedel docker
+userdel docker
 ## Configure user account name and password (used by rstudio)
 useradd -m $USER -u $UID && echo "$USER:$PASSWORD" | chpasswd
 ## User must own their home directory, or RStudio won't be able to load
