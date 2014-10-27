@@ -1,8 +1,6 @@
-image: eddelbuettel/ubuntu-r-base
+image: rocker/rstudio 
 script:
   - R --version
-  - Rscript --default-packages="stats, graphics, grDevices, datasets, utils, methods, base" -e 'sapply(installed.packages()[,"Package"], tools::testInstalledPackage)'
-
 notify:
   email:
     recipients:
