@@ -86,7 +86,12 @@ RUN cd /tmp/R-devel \
 ## Set Renviron.site to get libs from base R install
 RUN echo "R_LIBS_SITE=\${R_LIBS_SITE-'/usr/local/lib/R/site-library:/usr/local/lib/R/library:/usr/lib/R/library'}" > /usr/local/lib/R/etc/Renviron.site
 
+## Set default CRAN repo
+RUN echo 'options("repos"="http://cran.rstudio.com")' >> /usr/local/lib/R/etc/Rprofile.site
+
 RUN cd /usr/local/bin \
 && mv R Rdevel \
-&& mv Rscript Rscriptdevel
+&& mv Rscript Rscriptdevel \
+&& ln -s Rdevel RD \
+&& ln -s Rscriptdevel RDscript
 
