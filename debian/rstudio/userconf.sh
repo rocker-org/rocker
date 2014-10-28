@@ -6,9 +6,6 @@ PASSWORD=${PASSWORD:=rstudio}
 EMAIL=${EMAIL:=rstudio@example.com}
 USERID=${USERID:=1000}
 
-echo $USER
-echo $USERID
-
 ## Things get messy if we have more than one user.  Best to delete it.  
 userdel docker
 ## Configure user account name and password (used by rstudio)
