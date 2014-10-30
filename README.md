@@ -10,7 +10,7 @@ To get started right away, ensure you have [Docker installed](https://docs.docke
 
 ## Status ##
 
-This is work in progress; please read our [instructors to contributors](https://github.com/rocker-org/rocker/wiki/How-to-contribute) and talk to @eddelbuettel and @cboettig about how to get involved.
+This is work in progress; please read our [instructions to contributors](https://github.com/rocker-org/rocker/wiki/How-to-contribute) and talk to @eddelbuettel and @cboettig about how to get involved.
 
 ## Base Docker Containers ##
 
