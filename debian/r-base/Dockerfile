@@ -23,10 +23,6 @@ RUN apt-get update -qq \
     r-recommended \
     vim-tiny \
     wget \
-&&  cd /tmp/ \
-&&  wget http://dirk.eddelbuettel.com/code/debian/testing/littler_0.2.0.2-1_amd64.deb \
-&&  dpkg -i littler_0.2.0.2-1_amd64.deb \
-&&  rm littler_0.2.0.2-1_amd64.deb \
 &&  ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r \
 &&  ln -s /usr/share/doc/littler/examples/install2.r /usr/local/bin/install2.r \
 &&  ln -s /usr/share/doc/littler/examples/installGithub.r /usr/local/bin/installGithub.r \
