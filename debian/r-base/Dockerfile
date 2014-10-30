@@ -1,7 +1,7 @@
 ## Emacs, make this -*- mode: sh; -*-
 
-## start with the Debian testing
-FROM debian:testing
+## start with the Debian jessie (next release based on current testing)
+FROM debian:jessie
 
 ## This handle reaches Carl and Dirk
 MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
