@@ -31,7 +31,7 @@ RUN apt-get update -qq \
 &&  rm -rf /tmp/downloaded_packages/
 
 ## Set a default CRAN Repo
-RUN echo 'options(repos = list(CRAN = "http://cran.at.r-project.org/"))' >> /etc/R/Rprofile.site
+RUN echo 'options(repos = list(CRAN = "http://cran.rstudio.com/"))' >> /etc/R/Rprofile.site
 
 ## Set a default user. Available via runtime flag `--user docker` 
 ## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
