@@ -1,7 +1,7 @@
 ## Emacs, make this -*- mode: sh; -*-
 
-## start with the Debian jessie (next release based on current testing)
-FROM debian:jessie
+## start with Debian testing rolling releases
+FROM debian:testing
 
 ## This handle reaches Carl and Dirk
 MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
@@ -31,7 +31,7 @@ RUN apt-get update -qq \
 &&  rm -rf /tmp/downloaded_packages/
 
 ## Set a default CRAN Repo
-RUN echo 'options("repos"="http://cran.rstudio.com")' >> /etc/R/Rprofile.site
+RUN echo 'options(repos = list(CRAN = "http://cran.rstudio.com/"))' >> /etc/R/Rprofile.site
 
 ## Set a default user. Available via runtime flag `--user docker` 
 ## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
