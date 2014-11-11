@@ -28,7 +28,7 @@ RUN apt-get update -qq \
 &&  ln -s /usr/share/doc/littler/examples/installGithub.r /usr/local/bin/installGithub.r \
 &&  ln -s /usr/share/doc/littler/examples/testInstalled.r /usr/local/bin/testInstalled.r \
 &&  install.r docopt \
-&&  rm -rf /tmp/downloaded_packages/
+&&  rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
 ## Set a default CRAN Repo
 RUN echo 'options(repos = list(CRAN = "http://cran.rstudio.com/"))' >> /etc/R/Rprofile.site
