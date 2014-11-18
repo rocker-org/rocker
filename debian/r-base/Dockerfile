@@ -1,17 +1,11 @@
 ## Emacs, make this -*- mode: sh; -*-
-
-## start with Debian testing rolling releases
-FROM debian:testing
+ 
+FROM debian:jessie
 
 ## This handle reaches Carl and Dirk
 MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
 
-## Remain current
-RUN apt-get update -qq \
-&& apt-get dist-upgrade -y
-
 ## Now install R and littler, and create a link for littler in /usr/local/bin
-## NB until littler 0.2.1 is out, we are filling in a local deb package 
 RUN apt-get update -qq \
 &&  apt-get install -y --no-install-recommends \
     ed \
@@ -42,7 +36,7 @@ RUN useradd docker \
 && addgroup docker staff
 
 
-## Configure default locale
+## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 && locale-gen en_US.utf8 \
 && /usr/sbin/update-locale LANG=en_US.UTF-8
