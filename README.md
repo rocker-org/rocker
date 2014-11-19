@@ -1,5 +1,7 @@
 # rocker #
 
+[![Build Status](https://travis-ci.org/rocker-org/rocker.svg)](https://travis-ci.org/rocker-org/rocker)
+
 ## Overview ##
 
 This repository contains Dockerfiles for different Docker containers of interest to R users. 
