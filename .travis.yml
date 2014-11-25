@@ -27,4 +27,4 @@ before_script:
 script:
   - docker version
   - docker build -t local/r-base debian/r-base
-  - docker run r -e 'sapply(installed.packages()[,"Package"], tools::testInstalledPackage)'
+  - docker run local/r-base r -e 'sapply(installed.packages()[,"Package"], tools::testInstalledPackage)'
