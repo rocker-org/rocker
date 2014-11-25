@@ -5,6 +5,7 @@ USER=${USER:=rstudio}
 PASSWORD=${PASSWORD:=rstudio}
 EMAIL=${EMAIL:=rstudio@example.com}
 USERID=${USERID:=1000}
+ROOT=${ROOT:=FALSE}
 
 ## Things get messy if we have more than one user.  Best to delete it.  
 userdel docker
@@ -28,4 +29,9 @@ echo '"\e[5~": history-search-backward' >> /etc/inputrc && echo '"\e[6~": histor
 
 ## Let user write to /usr/local/lib/R/site.library
 addgroup $USER staff
+
+if [ "$ROOT" == "TRUE" ]; then
+  adduser $USER sudo && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+fi
+
 
