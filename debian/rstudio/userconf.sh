@@ -15,8 +15,8 @@ echo "$USER:$PASSWORD" | chpasswd
 ## User must own their home directory, or RStudio won't be able to load
 ## (Note this is only necessary if the user is linking a shared volume to a subdir of this directory)
 mkdir /home/$USER 
-## Configure git user to avoid being harassed about this later
-echo -e "[user]\n\tname = $USER\n\temail = $EMAIL\n\n[credential]\n\thelper = cache\n\n[push]\n\tdefault = simple" > /home/$USER/.gitconfig
+## Configure git 
+echo -e "[user]\n\tname = $USER\n\temail = $EMAIL\n\n[credential]\n\thelper = cache\n\n[push]\n\tdefault = simple\n\n[core]\n\teditor = vim\n" > /home/$USER/.gitconfig
 
 chown $USER:$USER /home/$USER
 
