@@ -31,3 +31,6 @@ if [ "$ROOT" == "TRUE" ]; then
 fi
 
 
+## Symlink pandoc templates
+mkdir /home/$USER/.pandoc && ln -s /opt/pandoc/templates /home/$USER/.pandoc/templates
+

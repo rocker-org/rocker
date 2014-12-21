@@ -27,16 +27,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 && ln -s /usr/lib/rstudio-server/bin/pandoc/pandoc /usr/local/bin \
 && ln -s /usr/lib/rstudio-server/bin/pandoc/pandoc-citeproc /usr/local/bin
 
-## This shell script is executed by supervisord when it is run by CMD, configures env variables
-COPY userconf.sh /usr/bin/userconf.sh
 
+RUN mkdir /opt/pandoc \
+&& git clone https://github.com/jgm/pandoc-templates.git /opt/pandoc/templates \
+&& chown -R root:staff /opt/pandoc/templates 
+
+## This shell script is executed by supervisord when it is run by CMD
+COPY userconf.sh /usr/bin/userconf.sh
 ## Configure persistent daemon serving RStudio-server on (container) port 8787
 RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 8787
-
 ## To have a container run a persistent task, we use the very simple supervisord as recommended in Docker documentation.
 CMD ["/usr/bin/supervisord"] 
-
-
