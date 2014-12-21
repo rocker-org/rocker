@@ -30,7 +30,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN mkdir /opt/pandoc \
 && git clone https://github.com/jgm/pandoc-templates.git /opt/pandoc/templates \
-&& chown -R root:staff /opt/pandoc/templates 
+&& chown -R root:staff /opt/pandoc/templates \
+&& mkdir /root/.pandoc \
+&& ln -s /opt/pandoc/templates /root/.pandoc/templates
 
 ## This shell script is executed by supervisord when it is run by CMD
 COPY userconf.sh /usr/bin/userconf.sh
