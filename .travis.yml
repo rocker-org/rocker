@@ -15,7 +15,7 @@ before_install:
 
 install:
   - sudo apt-get -qqy update
-  - sudo apt-get -qqy install lxc lxc-docker slirp
+  - sudo apt-get -qqy install lxc lxc-docker-1.2.0 slirp
   - sudo sudo usermod -aG docker "$USER"
   - git clone git://github.com/cptactionhank/sekexe
 
@@ -26,6 +26,6 @@ before_script:
 
 script:
   - docker version
-  - docker build -t local/r-base debian/r-base
+  - docker build -t local/r-base r-base
   - docker run local/r-base r -e 'sapply(installed.packages()[,"Package"], tools::testInstalledPackage)'
 
