@@ -1,10 +1,10 @@
-## Start with the rocker image providing 'base R' using a small Debian testing installation and the current R release
+## Start with the official rocker image providing 'base R' 
 FROM r-base:latest
-
 ## This handle reaches Carl and Dirk
 MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
 
-ENV DEBIAN-FRONTEND noninteractive  
+ENV DEBIAN-FRONTEND noninteractive
+## Add RStudio binaries to PATH
 ENV PATH /usr/lib/rstudio-server/bin/:$PATH   
 
 ## Download and install RStudio server
@@ -18,29 +18,43 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     psmisc \
     supervisor \
     sudo \
-&& wget -q http://ftp.us.debian.org/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb \ 
-&& dpkg -i libssl0.9.8_0.9.8o-4squeeze14_amd64.deb && rm libssl0.9.8_0.9.8o-4squeeze14_amd64.deb \
-&& VER=$(wget --no-check-certificate -qO- https://s3.amazonaws.com/rstudio-server/current.ver) \
-&& wget -q http://download2.rstudio.org/rstudio-server-${VER}-amd64.deb \
-&& dpkg -i rstudio-server-${VER}-amd64.deb \
-&& rm rstudio-server-*-amd64.deb \
-&& ln -s /usr/lib/rstudio-server/bin/pandoc/pandoc /usr/local/bin \
-&& ln -s /usr/lib/rstudio-server/bin/pandoc/pandoc-citeproc /usr/local/bin
+	&& wget -q http://ftp.us.debian.org/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb \ 
+	&& dpkg -i libssl0.9.8_0.9.8o-4squeeze14_amd64.deb && rm libssl0.9.8_0.9.8o-4squeeze14_amd64.deb \
+	&& VER=$(wget --no-check-certificate -qO- https://s3.amazonaws.com/rstudio-server/current.ver) \
+	&& wget -q http://download2.rstudio.org/rstudio-server-${VER}-amd64.deb \
+	&& dpkg -i rstudio-server-${VER}-amd64.deb \
+	&& rm rstudio-server-*-amd64.deb \
+	&& ln -s /usr/lib/rstudio-server/bin/pandoc/pandoc /usr/local/bin \
+	&& ln -s /usr/lib/rstudio-server/bin/pandoc/pandoc-citeproc /usr/local/bin \
+	&& apt-get clean \ 
+	&& rm -rf /var/lib/apt/lists/
 
-
+## RStudio pandoc doesn't provide pandoc templates needed for stand-alone mode outside of RStudio
+## We grab a copy and symlink them for root and docker users (Pandoc expects these to be in ~/.pandoc
+## by default).  
 RUN mkdir /opt/pandoc \
-&& git clone https://github.com/jgm/pandoc-templates.git /opt/pandoc/templates \
-&& chown -R root:staff /opt/pandoc/templates \
-&& mkdir /root/.pandoc && mkdir -p /home/docker/.pandoc \
-&& ln -s /opt/pandoc/templates /root/.pandoc/templates \
-&& ln -s /opt/pandoc/templates /home/docker/.pandoc/templates  
+	&& git clone https://github.com/jgm/pandoc-templates.git /opt/pandoc/templates \
+	&& chown -R root:staff /opt/pandoc/templates \
+	&& mkdir /root/.pandoc && mkdir -p /home/docker/.pandoc \
+	&& ln -s /opt/pandoc/templates /root/.pandoc/templates \
+	&& ln -s /opt/pandoc/templates /home/docker/.pandoc/templates  
 
+## Default system configuration:
+## (Avoids pestering beginners with git errors)
+RUN  git config --system user.name docker \
+	&& git config --system user.email docker@email.com \
+	&& git config --system push.default simple \
+	&& echo '"\e[5~": history-search-backward' >> /etc/inputrc \
+	&& echo '"\e[6~": history-search-backward' >> /etc/inputrc 
+
+## Configuration script in case alternative USER name is specified at runtime.
 ## This shell script is executed by supervisord when it is run by CMD
 COPY userconf.sh /usr/bin/userconf.sh
-## Configure persistent daemon serving RStudio-server on (container) port 8787
+
+## Configure a persistent daemon serving RStudio-server on (container) port 8787
+## using (docker-recommended) supervisord
 RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
 EXPOSE 8787
-## To have a container run a persistent task, we use the very simple supervisord as recommended in Docker documentation.
+
 CMD ["/usr/bin/supervisord"] 
