@@ -10,7 +10,9 @@ ENV PATH /usr/lib/rstudio-server/bin/:$PATH
 ## Download and install RStudio server
 ## Attempts to get detect latest version, otherwise falls back to version given in $VER
 ## Symlink pandoc, pandoc-citeproc so they are available system-wide
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN rm -rf /var/lib/apt/lists/ \
+	&& apt-get update \
+	&& apt-get install -y --no-install-recommends \
     ca-certificates \
     file \
     git \
