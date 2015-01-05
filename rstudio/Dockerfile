@@ -53,7 +53,8 @@ COPY userconf.sh /usr/bin/userconf.sh
 
 ## Configure a persistent daemon serving RStudio-server on (container) port 8787
 ## using (docker-recommended) supervisord
-RUN mkdir -p /var/log/supervisor
+RUN mkdir -p /var/log/supervisor \
+	&& chown -R docker:docker /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 EXPOSE 8787
 

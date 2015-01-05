@@ -1,5 +1,11 @@
 #!/bin/bash
 
+## Don't attempt to run if we are not root
+if [ "$EUID" -ne 0 ]
+	then echo "Please run as root"
+	exit
+fi
+
 ## Set defaults for environmental variables in case they are undefined
 USER=${USER:=rstudio}
 PASSWORD=${PASSWORD:=rstudio}
@@ -9,7 +15,10 @@ ROOT=${ROOT:=FALSE}
 
 ## Things get messy if we have more than one user.  Best to delete it.  
 ## (Docker cares only about uid, not username; diff users with same uid = confusion)
+## HOWEVER, do not run this script as `sudo` when logged in as user docker!
 userdel docker
+
+
 ## Configure user account name and password (used by rstudio)
 useradd -m $USER -u $USERID 
 echo "$USER:$PASSWORD" | chpasswd
