@@ -13,14 +13,16 @@ EMAIL=${EMAIL:=rstudio@example.com}
 USERID=${USERID:=1000}
 ROOT=${ROOT:=FALSE}
 
-## Things get messy if we have more than one user.  Best to delete it.  
+## Things get messy if we have more than one user.
 ## (Docker cares only about uid, not username; diff users with same uid = confusion)
-## HOWEVER, do not run this script as `sudo` when logged in as user docker!
-userdel docker
+if [ "$USERID" -ne 1000 ]
+## Configure user with a different USERID if requested.
+	then useradd -m $USER -u $USERID
+else
+	## RENAME the existing user. (because deleting a user can be trouble, i.e. if we're logged in as that user)
+	usermod -l $USER docker
+fi
 
-
-## Configure user account name and password (used by rstudio)
-useradd -m $USER -u $USERID 
 echo "$USER:$PASSWORD" | chpasswd
 ## User must own their home directory, or RStudio won't be able to load
 ## (Note this is only necessary if the user is linking a shared volume to a subdir of this directory)
