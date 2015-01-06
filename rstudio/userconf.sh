@@ -8,7 +8,7 @@ fi
 
 ## If we run as sudo, $USER is assigned to 'root' instead of undefined, and `sudo supervisord` doesn't set the default Ideally we would be able to get the actual username when sudo is used, but this is tricky.  Anyway, we never intend to log into RStudio directly as 'root' since it won't work anyway.
 if [ "$USER" = root ]
-	unset USER
+	then unset USER
 fi
 
 ## Set defaults for environmental variables in case they are undefined
