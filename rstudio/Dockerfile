@@ -41,23 +41,25 @@ RUN mkdir /opt/pandoc \
 	&& ln -s /opt/pandoc/templates /root/.pandoc/templates \
 	&& ln -s /opt/pandoc/templates /home/docker/.pandoc/templates  
 
-## Default system configuration:
-## (Avoids pestering beginners with git errors)
+## A default user system configuration:
 RUN  git config --system user.name docker \
 	&& git config --system user.email docker@email.com \
 	&& git config --system push.default simple \
 	&& echo '"\e[5~": history-search-backward' >> /etc/inputrc \
-	&& echo '"\e[6~": history-search-backward' >> /etc/inputrc 
+	&& echo '"\e[6~": history-search-backward' >> /etc/inputrc \
+	&& echo "docker:rstudio" | chpasswd
 
-## Configuration script in case alternative USER name is specified at runtime.
+
+
+## userconf.sh is a configuration script in case alternative USER name is specified at runtime.
 ## This shell script is executed by supervisord when it is run by CMD
-COPY userconf.sh /usr/bin/userconf.sh
-
-## Configure a persistent daemon serving RStudio-server on (container) port 8787
+## Also configure a persistent daemon serving RStudio-server on (container) port 8787
 ## using (docker-recommended) supervisord
-RUN mkdir -p /var/log/supervisor \
-	&& chown -R docker:docker /var/log/supervisor
+COPY userconf.sh /usr/bin/userconf.sh
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+RUN mkdir -p /var/log/supervisor \
+	&& chown -R docker:staff /var/log/supervisor \
+	&& chown docker:staff /etc/supervisor/conf.d/supervisord.conf
 EXPOSE 8787
 
-CMD ["/usr/bin/supervisord"] 
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"] 
