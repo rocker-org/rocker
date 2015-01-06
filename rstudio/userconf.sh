@@ -22,29 +22,35 @@ ROOT=${ROOT:=FALSE}
 ## (Docker cares only about uid, not username; diff users with same uid = confusion)
 if [ "$USERID" -ne 1000 ]
 ## Configure user with a different USERID if requested.
-	then useradd -m $USER -u $USERID
+	then
+		echo "creating new $USER with UID $USERID"
+		useradd -m $USER -u $USERID
+		mkdir /home/$USER
+		chown -R $USER /home/$USER
 else
 	## RENAME the existing user. (because deleting a user can be trouble, i.e. if we're logged in as that user)
 	usermod -l $USER docker
+	mv /home/docker /home/$USER
+	echo "USER is now $USER"
 fi
-
+## Assing password to user
 echo "$USER:$PASSWORD" | chpasswd
-## User must own their home directory, or RStudio won't be able to load
-## (Note this is only necessary if the user is linking a shared volume to a subdir of this directory)
-mkdir /home/$USER 
+
 ## Configure git for the User. Since root is running this script, cannot use `git config`
 echo -e "[user]\n\tname = $USER\n\temail = $EMAIL\n\n[credential]\n\thelper = cache\n\n[push]\n\tdefault = simple\n\n[core]\n\teditor = vim\n" > /home/$USER/.gitconfig
+echo ".gitconfig written for $USER"
 
 ## Let user write to /usr/local/lib/R/site.library
 addgroup $USER staff
 
 # Use Env flag to know if user should be added to sudoers
-if [ "$ROOT" == "TRUE" ]; then
-  adduser $USER sudo && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+if [ "$ROOT" == "TRUE" ]
+	then
+		adduser $USER sudo && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+		echo "$USER added to sudoers"
 fi
 
 ## Symlink pandoc templates to default directory
 mkdir /home/$USER/.pandoc && ln -s /opt/pandoc/templates /home/$USER/.pandoc/templates
-
-## User should own their own home directory and all containing files
-chown $USER:$USER /home/$USER
+## User should own their own home directory and all containing files (including these templates)
+chown -R $USER /home/$USER
