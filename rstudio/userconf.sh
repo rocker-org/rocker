@@ -29,8 +29,9 @@ if [ "$USERID" -ne 1000 ]
 		chown -R $USER /home/$USER
 else
 	## RENAME the existing user. (because deleting a user can be trouble, i.e. if we're logged in as that user)
-	usermod -l $USER docker
-	mv /home/docker /home/$USER
+	usermod -l $USER rstudio
+	usermod -m -d /home/$USER $USER 
+	groupmod -n $USER rstudio 
 	echo "USER is now $USER"
 fi
 ## Assing password to user

@@ -7,7 +7,7 @@ ENV DEBIAN-FRONTEND noninteractive
 ## Add RStudio binaries to PATH
 ENV PATH /usr/lib/rstudio-server/bin/:$PATH   
 
-## Download and install RStudio server
+## Download and install RStudio server & dependencies
 ## Attempts to get detect latest version, otherwise falls back to version given in $VER
 ## Symlink pandoc, pandoc-citeproc so they are available system-wide
 RUN rm -rf /var/lib/apt/lists/ \
@@ -31,35 +31,35 @@ RUN rm -rf /var/lib/apt/lists/ \
 	&& apt-get clean \ 
 	&& rm -rf /var/lib/apt/lists/
 
-## RStudio pandoc doesn't provide pandoc templates needed for stand-alone mode outside of RStudio
-## We grab a copy and symlink them for root and docker users (Pandoc expects these to be in ~/.pandoc
-## by default).  
-RUN mkdir /opt/pandoc \
-	&& git clone https://github.com/jgm/pandoc-templates.git /opt/pandoc/templates \
-	&& chown -R root:staff /opt/pandoc/templates \
-	&& mkdir /root/.pandoc && mkdir -p /home/docker/.pandoc \
-	&& ln -s /opt/pandoc/templates /root/.pandoc/templates \
-	&& ln -s /opt/pandoc/templates /home/docker/.pandoc/templates  
 
-## A default user system configuration:
-RUN  git config --system user.name docker \
-	&& git config --system user.email docker@email.com \
+## A default user system configuration. For historical reasons,
+## we want user to be 'rstudio', but it is 'docker' in r-base
+RUN usermod -l rstudio docker \
+	&& usermod -m -d /home/rstudio rstudio \
+	&& groupmod -n rstudio docker \
+	&& git config --system user.name rstudio \
+	&& git config --system user.email rstudio@example.com \
 	&& git config --system push.default simple \
 	&& echo '"\e[5~": history-search-backward' >> /etc/inputrc \
 	&& echo '"\e[6~": history-search-backward' >> /etc/inputrc \
-	&& echo "docker:rstudio" | chpasswd
+	&& echo "rstudio:rstudio" | chpasswd
 
+## RStudio pandoc doesn't provide pandoc templates needed for stand-alone mode outside of RStudio
+RUN mkdir /opt/pandoc \
+	&& git clone https://github.com/jgm/pandoc-templates.git /opt/pandoc/templates \
+	&& chown -R root:staff /opt/pandoc/templates \
+	&& mkdir /root/.pandoc \
+	&& mkdir -p /home/rstudio/.pandoc \
+	&& ln -s /opt/pandoc/templates /root/.pandoc/templates \
+	&& ln -s /opt/pandoc/templates /home/rstudio/.pandoc/templates 
 
-
-## userconf.sh is a configuration script in case alternative USER name is specified at runtime.
-## This shell script is executed by supervisord when it is run by CMD
-## Also configure a persistent daemon serving RStudio-server on (container) port 8787
-## using (docker-recommended) supervisord
+## User config and supervisord for persistant RStudio session
 COPY userconf.sh /usr/bin/userconf.sh
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN mkdir -p /var/log/supervisor \
-	&& chown -R docker:staff /var/log/supervisor \
-	&& chown docker:staff /etc/supervisor/conf.d/supervisord.conf
+	&& chgrp staff /var/log/supervisor \
+	&& chmod g+w /var/log/supervisor \
+	&& chgrp staff /etc/supervisor/conf.d/supervisord.conf
 EXPOSE 8787
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"] 
