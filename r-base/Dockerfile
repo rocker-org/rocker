@@ -41,7 +41,7 @@ ENV R_BASE_VERSION 3.1.2
 
 ## Now install R and littler, and create a link for littler in /usr/local/bin
 RUN apt-get update -qq \
-	&& apt-get install -y --no-install-recommends \
+	&& apt-get install -t unstable -y --no-install-recommends \
 			littler/unstable \
 			r-base=${R_BASE_VERSION}* \
 			r-base-dev=${R_BASE_VERSION}* \
