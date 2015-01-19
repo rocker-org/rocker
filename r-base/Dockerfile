@@ -13,7 +13,7 @@ RUN useradd docker \
   && chown docker:docker /home/docker \
   && addgroup docker staff
 
-RUN apt-get update 
+RUN apt-get update \ 
   && apt-get install -y --no-install-recommends \
     ed \
     less \
