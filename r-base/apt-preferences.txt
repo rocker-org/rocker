@@ -1,0 +1,18 @@
+
+## This is straight from Jacque's old HOWTO at
+##     http://jaqque.sbih.org/kplug/apt-pinning.html
+## 
+## Dirk Eddelbuettel, 19 Jan 2015
+
+Package: *
+Pin: release a=stable
+Pin-Priority: 700
+
+Package: *
+Pin: release a=testing
+Pin-Priority: 650
+
+Package: *
+Pin: release a=unstable
+Pin-Priority: 600
+

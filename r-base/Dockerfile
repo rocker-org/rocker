@@ -30,15 +30,19 @@ ENV LC_ALL en_US.UTF-8
 
 ## Use Debian repo at CRAN, and use RStudio CDN as mirror
 ## This gets us updated r-base, r-base-dev, r-recommended and littler
-RUN apt-key adv --keyserver keys.gnupg.net --recv-key 381BA480 \
-	&& echo "deb http://cran.rstudio.com/bin/linux/debian wheezy-cran3/" > /etc/apt/sources.list.d/r-cran.list
+#RUN apt-key adv --keyserver keys.gnupg.net --recv-key 381BA480 \
+#	&& echo "deb http://cran.rstudio.com/bin/linux/debian wheezy-cran3/" > /etc/apt/sources.list.d/r-cran.list
+#
+## Rather, use Debian unstable via pinning (see apt-preferences.txt)
+RUN echo "deb http://http.debian.net/debian sid main" >> /etc/apt/sources.list
+COPY apt-preferences.txt /etc/apt/preferences
 
 ENV R_BASE_VERSION 3.1.2
 
 ## Now install R and littler, and create a link for littler in /usr/local/bin
 RUN apt-get update -qq \
 	&& apt-get install -y --no-install-recommends \
-			littler \
+			littler/unstable \
 			r-base=${R_BASE_VERSION}* \
 			r-base-dev=${R_BASE_VERSION}* \
 			r-recommended=${R_BASE_VERSION}* \
