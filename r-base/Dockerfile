@@ -34,13 +34,13 @@ ENV LC_ALL en_US.UTF-8
 #	&& echo "deb http://cran.rstudio.com/bin/linux/debian wheezy-cran3/" > /etc/apt/sources.list.d/r-cran.list
 #
 ## Rather, use Debian unstable via pinning (see apt-preferences.txt)
-RUN echo "deb http://http.debian.net/debian sid main" >> /etc/apt/sources.list
-COPY apt-preferences.txt /etc/apt/preferences
+RUN echo "deb http://http.debian.net/debian sid main" > /etc/apt/sources.list.d/debian-unstable.list
+COPY apt-preferences.txt /etc/apt/preferences.d/apt-pinning.pref
 
 ENV R_BASE_VERSION 3.1.2
 
 ## Now install R and littler, and create a link for littler in /usr/local/bin
-RUN apt-get update -qq \
+RUN apt-get update \
 	&& apt-get install -t unstable -y --no-install-recommends \
 			littler/unstable \
 			r-base=${R_BASE_VERSION}* \
