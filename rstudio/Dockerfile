@@ -44,17 +44,9 @@ RUN usermod -l rstudio docker \
   && echo '"\e[6~": history-search-backward' >> /etc/inputrc \
   && echo "rstudio:rstudio" | chpasswd
 
-## RStudio pandoc doesn't provide pandoc templates needed for stand-alone mode outside of RStudio
-RUN mkdir /opt/pandoc \
-  && git clone https://github.com/jgm/pandoc-templates.git /opt/pandoc/templates \
-  && chown -R root:staff /opt/pandoc/templates \
-  && mkdir /root/.pandoc \
-  && mkdir -p /home/rstudio/.pandoc \
-  && ln -s /opt/pandoc/templates /root/.pandoc/templates \
-  && ln -s /opt/pandoc/templates /home/rstudio/.pandoc/templates
-
 ## User config and supervisord for persistant RStudio session
 COPY userconf.sh /usr/bin/userconf.sh
+COPY add-students.sh /usr/local/bin/add-students
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN mkdir -p /var/log/supervisor \
   && chgrp staff /var/log/supervisor \
