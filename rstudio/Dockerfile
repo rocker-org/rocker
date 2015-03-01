@@ -6,6 +6,7 @@ MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuette
 ENV DEBIAN-FRONTEND noninteractive
 ## Add RStudio binaries to PATH
 ENV PATH /usr/lib/rstudio-server/bin/:$PATH 
+ENV LANG en_US.UTF-8
 
 ## Download and install RStudio server & dependencies
 ## Attempts to get detect latest version, otherwise falls back to version given in $VER
