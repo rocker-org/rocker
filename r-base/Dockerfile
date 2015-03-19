@@ -54,4 +54,7 @@ RUN apt-get update \
 ## Set a default CRAN Repo
 RUN echo 'options(repos = list(CRAN = "http://cran.rstudio.com/"))' >> /etc/R/Rprofile.site
 
+## Set a default CRAN Repo for littler (by sourcing Rprofile.site)
+RUN echo 'source("/etc/R/Rprofile.site")' >> /etc/littler.r
+
 CMD ["R"]
