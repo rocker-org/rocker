@@ -23,7 +23,7 @@ RUN apt-get update -qq \
 		groff-base \
 		libblas-dev \
 		libbz2-dev \
-		libcairo2-dev \
+		libcairo2-dev/unstable \
 		libcurl4-openssl-dev \
 		libjpeg-dev \
 		liblapack-dev \
