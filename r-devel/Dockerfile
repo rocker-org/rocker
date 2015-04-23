@@ -23,7 +23,7 @@ RUN apt-get update -qq \
 		groff-base \
 		libblas-dev \
 		libbz2-dev \
-		libcairo2-dev \
+		libcairo2-dev/unstable \
 		libcurl4-openssl-dev \
 		libjpeg-dev \
 		liblapack-dev \
@@ -54,11 +54,11 @@ RUN apt-get update -qq \
 		xdg-utils \
 		xfonts-base \
 		xvfb \
-		zlib1g-dev 
+		zlib1g-dev
 
 ## Check out R-devel
 RUN cd /tmp \
-&& svn co http://svn.r-project.org/R/trunk R-devel 
+&& svn co http://svn.r-project.org/R/trunk R-devel
 
 ## Build and install according the standard 'recipe' I emailed/posted years ago
 RUN cd /tmp/R-devel \
@@ -72,8 +72,8 @@ RUN cd /tmp/R-devel \
 		R_PRINTCMD=/usr/bin/lpr \
 		LIBnn=lib \
 		AWK=/usr/bin/awk \
-		CFLAGS="-pipe -std=gnu99 -Wall -pedantic -O3" \
-		CXXFLAGS="-pipe -Wall -pedantic -O3" \
+		CFLAGS=$(R CMD config CFLAGS) \
+		CXXFLAGS=$(R CMD config CXXFLAGS) \
 	./configure --enable-R-shlib \
                --without-blas \
                --without-lapack \
