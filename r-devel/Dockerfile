@@ -19,6 +19,7 @@ RUN apt-get update -qq \
 		default-jdk \
 		g++ \
 		gcc \
+		gdb \
 		gfortran \
 		groff-base \
 		libblas-dev \
