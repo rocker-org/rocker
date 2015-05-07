@@ -17,7 +17,7 @@ RUN rm -rf /var/lib/apt/lists/ \
     ca-certificates \
     file \
     git \
-    libcurl4-openssl-dev \
+    libcurl4-openssl-dev/unstable \
     psmisc \
     supervisor \
     sudo \
