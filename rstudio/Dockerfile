@@ -18,6 +18,7 @@ RUN rm -rf /var/lib/apt/lists/ \
     file \
     git \
     libcurl4-openssl-dev \
+    libssl-dev \
     psmisc \
     supervisor \
     sudo \
