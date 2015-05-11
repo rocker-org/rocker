@@ -13,11 +13,11 @@ ENV LANG en_US.UTF-8
 ## Symlink pandoc, pandoc-citeproc so they are available system-wide
 RUN rm -rf /var/lib/apt/lists/ \
   && apt-get update \
-  && apt-get install -y --no-install-recommends \
+  && apt-get install -t unstable -y --no-install-recommends \
     ca-certificates \
     file \
     git \
-    libcurl4-openssl-dev/unstable \
+    libcurl4-openssl-dev \
     psmisc \
     supervisor \
     sudo \
