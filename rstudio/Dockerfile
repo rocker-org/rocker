@@ -17,6 +17,7 @@ RUN rm -rf /var/lib/apt/lists/ \
     ca-certificates \
     file \
     git \
+    libapparmor1 \
     libcurl4-openssl-dev \
     libssl-dev \
     psmisc \

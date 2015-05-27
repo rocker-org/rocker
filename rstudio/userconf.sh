@@ -51,7 +51,5 @@ if [ "$ROOT" == "TRUE" ]
 		echo "$USER added to sudoers"
 fi
 
-## Symlink pandoc templates to default directory
-mkdir /home/$USER/.pandoc && ln -s /opt/pandoc/templates /home/$USER/.pandoc/templates
 ## User should own their own home directory and all containing files (including these templates)
 chown -R $USER /home/$USER
