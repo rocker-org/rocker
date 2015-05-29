@@ -3,7 +3,6 @@ FROM r-base:latest
 ## This handle reaches Carl and Dirk
 MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
 
-ENV DEBIAN-FRONTEND noninteractive
 ## Add RStudio binaries to PATH
 ENV PATH /usr/lib/rstudio-server/bin/:$PATH 
 ENV LANG en_US.UTF-8
