@@ -17,6 +17,7 @@ RUN rm -rf /var/lib/apt/lists/ \
     file \
     git \
     libapparmor1 \
+    libedit2 \
     libcurl4-openssl-dev \
     libssl-dev \
     psmisc \
