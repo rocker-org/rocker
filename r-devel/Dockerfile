@@ -12,7 +12,7 @@ RUN apt-get update -qq \
 
 ## From the Build-Depends of the Debian R package, plus subversion
 RUN apt-get update -qq \
-	&& apt-get install -y --no-install-recommends \
+	&& apt-get install -t unstable -y --no-install-recommends \
 		bash-completion \
 		bison \
 		debhelper \
