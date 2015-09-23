@@ -32,6 +32,12 @@ RUN rm -rf /var/lib/apt/lists/ \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/
 
+## Ensure that if both httr and httpuv are installed downstream, oauth 2.0 flows still work correctly.
+RUN echo '\n\
+\n# Configure httr to always perform out-of-band authentication \
+\n# since a redirect to localhost may not work depending upon where \
+\n# this Docker container is running. \
+\noptions(httr_oob_default = TRUE)' >> /usr/lib/R/etc/Rprofile.site
 
 ## A default user system configuration. For historical reasons,
 ## we want user to be 'rstudio', but it is 'docker' in r-base
