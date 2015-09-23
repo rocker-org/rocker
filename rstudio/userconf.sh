@@ -53,9 +53,9 @@ fi
 
 
 ## add these to the global environment so they are avialable to the RStudio user 
-#echo "HTTR_LOCALHOST=$HTTR_LOCALHOST" >> /etc/environment
-#echo "HTTR_PORT=$HTTR_PORT" >> /etc/environment
-env | cat >> /etc/environment
+#echo "HTTR_LOCALHOST=$HTTR_LOCALHOST" >> /etc/R/Renviron.site
+#echo "HTTR_PORT=$HTTR_PORT" >> /etc/R/Renviron.site
+env | cat >> /etc/R/Renviron.site
 
 ## User should own their own home directory and all containing files (including these templates)
 chown -R $USER /home/$USER
