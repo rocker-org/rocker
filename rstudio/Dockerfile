@@ -4,7 +4,7 @@ FROM r-base:latest
 MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
 
 ## Add RStudio binaries to PATH
-ENV PATH /usr/lib/rstudio-server/bin/:$PATH 
+ENV PATH /usr/lib/rstudio-server/bin/:$PATH
 ENV LANG en_US.UTF-8
 
 ## Download and install RStudio server & dependencies
@@ -34,10 +34,12 @@ RUN rm -rf /var/lib/apt/lists/ \
 
 ## Ensure that if both httr and httpuv are installed downstream, oauth 2.0 flows still work correctly.
 RUN echo '\n\
-\n# Configure httr to always perform out-of-band authentication \
-\n# since a redirect to localhost may not work depending upon where \
-\n# this Docker container is running. \
-\noptions(httr_oob_default = TRUE)' >> /usr/lib/R/etc/Rprofile.site
+\n# Configure httr to perform out-of-band authentication if HTTR_LOCALHOST \
+\n# is not set since a redirect to localhost may not work depending upon \
+\n# where this Docker container is running. \
+\nif(is.na(Sys.getenv("HTTR_LOCALHOST", unset=NA))) { \
+\n  options(httr_oob_default = TRUE) \
+\n}' >> /etc/R/Rprofile.site
 
 ## A default user system configuration. For historical reasons,
 ## we want user to be 'rstudio', but it is 'docker' in r-base
