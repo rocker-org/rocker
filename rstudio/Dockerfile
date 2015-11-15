@@ -19,6 +19,7 @@ RUN rm -rf /var/lib/apt/lists/ \
     libapparmor1 \
     libedit2 \
     libcurl4-openssl-dev \
+    libssl1.0.0 \
     libssl-dev \
     psmisc \
     supervisor \
