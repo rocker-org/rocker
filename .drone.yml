@@ -1,8 +1,0 @@
-image: rocker/rstudio 
-script:
-  - R --version
-  - userconf.sh
-notify:
-  email:
-    recipients:
-      - cboettig@ropensci.org

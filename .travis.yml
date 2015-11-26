@@ -3,15 +3,16 @@ sudo: required
 services:
   - docker
 
-## Make sure all containers build without error
+## Make sure all containers build without error.
 before_install: 
   - docker build -t rocker/r-base r-base
-  - docker build -t rocker/r-devel r-devel
+    #  - docker build -t rocker/r-devel r-devel
   - docker build -t rocker/rstudio rstudio
 
-## Crude test, see if our container stays up after launch
+## A few simple / crude tests
 script:
-  - docker run --rm --name rstudio rocker/rstudio
+  - docker run -ti rocker/r-base R --version
+  - docker run -d --rm --name rstudio rocker/rstudio
   - sleep 5 && docker ps | grep rstudio
-
+  - docker rm -f $(docker ps -a -q)
  
