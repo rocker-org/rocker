@@ -12,7 +12,7 @@ before_install:
 ## A few simple / crude tests
 script:
   - docker run -ti rocker/r-base R --version
-  - docker run -d --rm --name rstudio rocker/rstudio
+  - docker run -d --name rstudio rocker/rstudio
   - sleep 5 && docker ps | grep rstudio
   - docker rm -f $(docker ps -a -q)
  
