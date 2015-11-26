@@ -1,0 +1,13 @@
+sudo: required
+
+services:
+  - docker
+
+before_install: 
+  - docker build -t rocker/r-base r-base
+  - docker build -t rocker/r-devel r-devel
+  - docker build -t rocker/rstudio rstudio
+
+script:
+  - docker run --rm --name rstudio rocker/rstudio
+  - docker ps | grep rstudio 
