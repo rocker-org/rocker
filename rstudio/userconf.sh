@@ -1,5 +1,4 @@
 #!/bin/bash
-
 ## Don't attempt to run if we are not root
 if [ "$EUID" -ne 0 ]
 	then echo "Please run as root"
@@ -34,12 +33,12 @@ else
 	groupmod -n $USER rstudio 
 	echo "USER is now $USER"
 fi
-## Assing password to user
+## Adding a password to user
 echo "$USER:$PASSWORD" | chpasswd
 
 ## Configure git for the User. Since root is running this script, cannot use `git config`
-echo -e "[user]\n\tname = $USER\n\temail = $EMAIL\n\n[credential]\n\thelper = cache\n\n[push]\n\tdefault = simple\n\n[core]\n\teditor = vim\n" > /home/$USER/.gitconfig
-echo ".gitconfig written for $USER"
+#echo -e "[user]\n\tname = $USER\n\temail = $EMAIL\n\n[credential]\n\thelper = cache\n\n[push]\n\tdefault = simple\n\n[core]\n\teditor = vim\n" > /home/$USER/.gitconfig
+#echo ".gitconfig written for $USER"
 
 ## Let user write to /usr/local/lib/R/site.library
 addgroup $USER staff

@@ -5,7 +5,6 @@ MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuette
 
 ## Add RStudio binaries to PATH
 ENV PATH /usr/lib/rstudio-server/bin/:$PATH
-ENV LANG en_US.UTF-8
 
 ## Download and install RStudio server & dependencies
 ## Attempts to get detect latest version, otherwise falls back to version given in $VER
@@ -52,9 +51,6 @@ RUN echo '\n\
 RUN usermod -l rstudio docker \
   && usermod -m -d /home/rstudio rstudio \
   && groupmod -n rstudio docker \
-  && git config --system user.name rstudio \
-  && git config --system user.email rstudio@example.com \
-  && git config --system push.default simple \
   && echo '"\e[5~": history-search-backward' >> /etc/inputrc \
   && echo '"\e[6~": history-search-backward' >> /etc/inputrc \
   && echo "rstudio:rstudio" | chpasswd
