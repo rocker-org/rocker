@@ -57,14 +57,14 @@ RUN usermod -l rstudio docker \
 COPY add-students.sh /usr/local/bin/add-students
 
 ## Use s6
-ADD https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz /tmp/
-RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
+RUN wget -P /tmp/ https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz \
+  && tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
 
 
-#COPY userconf.sh /etc/services.d/conf/run
-
+COPY userconf.sh /etc/cont-init.d/conf
 COPY run.sh /etc/services.d/rstudio/run
 
 EXPOSE 8787
 ENTRYPOINT ["/init"]
+
 
