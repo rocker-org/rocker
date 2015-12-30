@@ -22,7 +22,6 @@ RUN rm -rf /var/lib/apt/lists/ \
     libssl-dev \
     psmisc \
     python-setuptools \
-    supervisor \
     sudo \
   && VER=$(wget --no-check-certificate -qO- https://s3.amazonaws.com/rstudio-server/current.ver) \
   && wget -q http://download2.rstudio.org/rstudio-server-${VER}-amd64.deb \
@@ -55,14 +54,17 @@ RUN usermod -l rstudio docker \
   && echo '"\e[6~": history-search-backward' >> /etc/inputrc \
   && echo "rstudio:rstudio" | chpasswd
 
-## User config and supervisord for persistant RStudio session
-COPY userconf.sh /usr/bin/userconf.sh
 COPY add-students.sh /usr/local/bin/add-students
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-RUN mkdir -p /var/log/supervisor \
-  && chgrp staff /var/log/supervisor \
-  && chmod g+w /var/log/supervisor \
-  && chgrp staff /etc/supervisor/conf.d/supervisord.conf
-EXPOSE 8787
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+## Use s6
+ADD https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz /tmp/
+RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
+
+
+#COPY userconf.sh /etc/services.d/conf/run
+
+COPY run.sh /etc/services.d/rstudio/run
+
+EXPOSE 8787
+ENTRYPOINT ["/init"]
+
