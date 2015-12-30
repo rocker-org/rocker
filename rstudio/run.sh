@@ -26,13 +26,14 @@ if [ "$USERID" -ne 1000 ]
 		useradd -m $USER -u $USERID
 		mkdir /home/$USER
 		chown -R $USER /home/$USER
-else
-	## RENAME the existing user. (because deleting a user can be trouble, i.e. if we're logged in as that user)
-	usermod -l $USER rstudio
-	usermod -m -d /home/$USER $USER 
-	groupmod -n $USER rstudio 
-	echo "USER is now $USER"
+  elif [ "$USER" != "rstudio" ]
+  then	## RENAME the existing user. (because deleting a user can be trouble, i.e. if we're logged in as that user)
+	  usermod -l $USER rstudio
+	  usermod -m -d /home/$USER $USER 
+	  groupmod -n $USER rstudio 
+	  echo "USER is now $USER"
 fi
+
 ## Adding a password to user
 echo "$USER:$PASSWORD" | chpasswd
 
@@ -41,7 +42,7 @@ echo "$USER:$PASSWORD" | chpasswd
 #echo ".gitconfig written for $USER"
 
 ## Let user write to /usr/local/lib/R/site.library
-addgroup $USER staff
+addgroup --quiet $USER staff
 
 # Use Env flag to know if user should be added to sudoers
 if [ "$ROOT" == "TRUE" ]
@@ -58,3 +59,6 @@ echo "HTTR_PORT=$HTTR_PORT" >> /etc/R/Renviron.site
 
 ## User should own their own home directory and all containing files (including these templates)
 chown -R $USER /home/$USER
+
+
+exec /usr/lib/rstudio-server/bin/rserver
