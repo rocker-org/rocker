@@ -55,13 +55,13 @@ RUN usermod -l rstudio docker \
   && echo '"\e[6~": history-search-backward' >> /etc/inputrc \
   && echo "rstudio:rstudio" | chpasswd
 
-COPY add-students.sh /usr/local/bin/add-students
+#COPY add-students.sh /usr/local/bin/add-students
+#COPY config.sh /etc/service/config/run
 COPY run.sh /etc/service/rstudio/run
-
 
 EXPOSE 8787
 
 
 
 
-CMD ["runsvdir", "/etc/service"] 
+CMD ["runsvdir-start"]
