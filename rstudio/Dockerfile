@@ -22,7 +22,7 @@ RUN rm -rf /var/lib/apt/lists/ \
     libssl-dev \
     psmisc \
     python-setuptools \
-    runit \
+    supervisor \
     sudo \
   && VER=$(wget --no-check-certificate -qO- https://s3.amazonaws.com/rstudio-server/current.ver) \
   && wget -q http://download2.rstudio.org/rstudio-server-${VER}-amd64.deb \
@@ -55,13 +55,14 @@ RUN usermod -l rstudio docker \
   && echo '"\e[6~": history-search-backward' >> /etc/inputrc \
   && echo "rstudio:rstudio" | chpasswd
 
+## User config and supervisord for persistant RStudio session
+COPY userconf.sh /usr/bin/userconf.sh
 COPY add-students.sh /usr/local/bin/add-students
-COPY run.sh /etc/service/rstudio/run
-
-
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+RUN mkdir -p /var/log/supervisor \
+  && chgrp staff /var/log/supervisor \
+  && chmod g+w /var/log/supervisor \
+  && chgrp staff /etc/supervisor/conf.d/supervisord.conf
 EXPOSE 8787
 
-
-
-
-CMD ["runsvdir", "/etc/service"] 
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
