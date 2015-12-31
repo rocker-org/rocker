@@ -65,6 +65,6 @@ COPY userconf.sh /etc/cont-init.d/conf
 COPY run.sh /etc/services.d/rstudio/run
 
 EXPOSE 8787
-ENTRYPOINT ["/init"]
+CMD ["/init"]
 
 
