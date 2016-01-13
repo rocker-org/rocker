@@ -54,17 +54,15 @@ RUN usermod -l rstudio docker \
   && echo '"\e[6~": history-search-backward' >> /etc/inputrc \
   && echo "rstudio:rstudio" | chpasswd
 
-COPY add-students.sh /usr/local/bin/add-students
-
 ## Use s6
 RUN wget -P /tmp/ https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz \
   && tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
 
-
 COPY userconf.sh /etc/cont-init.d/conf
 COPY run.sh /etc/services.d/rstudio/run
 
+
+COPY add-students.sh /usr/local/bin/add-students
 EXPOSE 8787
+
 CMD ["/init"]
-
-
