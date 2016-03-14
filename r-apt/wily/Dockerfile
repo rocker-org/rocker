@@ -23,8 +23,7 @@ RUN apt-get update \
 		wget \
 		ca-certificates \
         && add-apt-repository -y "ppa:marutter/rrutter" \
-	&& add-apt-repository -y "ppa:marutter/c2d4u" \
-	&& add-apt-repository -y "ppa:octave/stable" 
+	&& add-apt-repository -y "ppa:marutter/c2d4u" 
 
 ## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
