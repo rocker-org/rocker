@@ -22,8 +22,8 @@ RUN apt-get update \
 		vim-tiny \
 		wget \
 		ca-certificates \
-        && add-apt-repository -y "ppa:marutter/rrutter" \
-	&& add-apt-repository -y "ppa:marutter/c2d4u" 
+        && add-apt-repository --enable-source --yes "ppa:marutter/rrutter" \
+	&& add-apt-repository --enable-source --yes "ppa:marutter/c2d4u" 
 
 ## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
@@ -41,6 +41,7 @@ RUN apt-get update \
  		 r-base-dev \
  		 r-recommended \
                  r-cran-stringr \
+                 r-cran-rcpp \
         && echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "wget")' >> /etc/R/Rprofile.site \
  	&& ln -s /usr/lib/R/site-library/littler/examples/install.r /usr/local/bin/install.r \
  	&& ln -s /usr/lib/R/site-library/littler/examples/install2.r /usr/local/bin/install2.r \
