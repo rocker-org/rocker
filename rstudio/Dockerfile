@@ -65,4 +65,7 @@ COPY run.sh /etc/services.d/rstudio/run
 COPY add-students.sh /usr/local/bin/add-students
 EXPOSE 8787
 
+## Expose a default volume for Kitematic
+VOLUME /home/rstudio
+
 CMD ["/init"]
