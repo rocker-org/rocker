@@ -24,6 +24,6 @@ It's also nice if you can include:
 
 ## Pull requests ##
 
-- Please make pull requests against the `sandbox` branch.  (See build chain notes in the link below) 
+- Pull requests against the `master` branch should be fine.
 - Review [How to Contribute](https://github.com/rocker-org/rocker/wiki/How-to-contribute) on the wiki
 
