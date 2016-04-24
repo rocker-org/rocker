@@ -1,3 +1,3 @@
 #!/bin/bash
-exec /usr/lib/rstudio-server/bin/rserver
+exec /usr/lib/rstudio-server/bin/rserver --server-daemonize 0
 
