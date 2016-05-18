@@ -38,3 +38,5 @@ fi
 echo "HTTR_LOCALHOST=$HTTR_LOCALHOST" >> /etc/R/Renviron.site
 echo "HTTR_PORT=$HTTR_PORT" >> /etc/R/Renviron.site
 
+## Because we declare /home/rstudio as a Volume, it is owned by root: see http://stackoverflow.com/questions/26145351
+chown -R $USER:$USER /home/$USER
