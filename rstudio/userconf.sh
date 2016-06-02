@@ -19,8 +19,11 @@ if [ "$USER" != "rstudio" ]
   then 
 	## RENAME the user 
 	usermod -l $USER rstudio
-	usermod -m -d /home/$USER $USER 
+  ## cannot move home folder when it's a shared volume, have to copy and change permissions instead
+	## usermod -m -d /home/$USER $USER 
+  cp -r /home/rstudio /home/$USER
 	groupmod -n $USER rstudio 
+  chown -R $USER:$USER /home/$USER
 	echo "USER is now $USER"
 fi
 
