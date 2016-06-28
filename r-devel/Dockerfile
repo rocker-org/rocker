@@ -59,7 +59,7 @@ RUN apt-get update -qq \
 
 ## Check out R-devel
 RUN cd /tmp \
-&& svn co http://svn.r-project.org/R/trunk R-devel
+&& svn co https://svn.r-project.org/R/trunk R-devel
 
 ## Build and install according the standard 'recipe' I emailed/posted years ago
 RUN cd /tmp/R-devel \
