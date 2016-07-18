@@ -18,7 +18,7 @@ RUN rm -rf /var/lib/apt/lists/ \
     libapparmor1 \
     libedit2 \
     libcurl4-openssl-dev \
-    libssl1.0.0 \
+    libssl1.0.2 \
     libssl-dev \
     psmisc \
     python-setuptools \
