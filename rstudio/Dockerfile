@@ -6,11 +6,15 @@ MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuette
 ## Add RStudio binaries to PATH
 ENV PATH /usr/lib/rstudio-server/bin/:$PATH
 
+
+RUN sh -c "echo 'deb http://ftp.de.debian.org/debian jessie main' >> /etc/apt/sources.list"
+
 ## Download and install RStudio server & dependencies
 ## Attempts to get detect latest version, otherwise falls back to version given in $VER
 ## Symlink pandoc, pandoc-citeproc so they are available system-wide
 RUN rm -rf /var/lib/apt/lists/ \
   && apt-get update \
+  && apt-get install -t stable libssl1.0.0 \
   && apt-get install -y -t unstable --no-install-recommends \
     ca-certificates \
     file \
@@ -18,7 +22,6 @@ RUN rm -rf /var/lib/apt/lists/ \
     libapparmor1 \
     libedit2 \
     libcurl4-openssl-dev \
-    libssl1.0.0 \
     libssl-dev \
     psmisc \
     python-setuptools \
@@ -65,7 +68,7 @@ COPY run.sh /etc/services.d/rstudio/run
 COPY add-students.sh /usr/local/bin/add-students
 EXPOSE 8787
 
-## Expose a default volume for Kitematic 
+## Expose a default volume for Kitematic
 VOLUME /home/rstudio
 
 CMD ["/init"]
