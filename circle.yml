@@ -1,0 +1,12 @@
+general:
+
+machine:
+  services:
+    - docker
+
+test:
+  override:
+    - docker build -t rocker/r-devel r-devel
+    - docker run -ti rocker/r-devel R --version
+    - docker run -ti rocker/r-devel RD --version
+
