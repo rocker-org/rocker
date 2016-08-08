@@ -19,8 +19,8 @@ This is work in progress; please read our [instructions to contributors](https:/
 | Docker Container Source on GitHub          | Docker Hub Build Status and URL                           | Image Size
 | :---------------------------------------   | :-----------------------------------------                | :--------------
 | r-base (base package to build from)        | [good](https://registry.hub.docker.com/u/rocker/r-base/)  | [![LayersSize](https://images.microbadger.com/badges/image/library/r-base.svg)](https://registry.hub.docker.com/u/rocker/r-base/)
-| r-devel (base plus R-devel from SVN)       | [good](https://registry.hub.docker.com/u/rocker/r-devel/) | [![](https://images.microbadger.com/badges/image/rocker/r-devel.svg)]((https://registry.hub.docker.com/u/rocker/r-devel/)
-| rstudio (base plus RStudio Server)         | [good](https://registry.hub.docker.com/u/rocker/rstudio/) | [![](https://images.microbadger.com/badges/image/rocker/rstudio.svg)]((https://registry.hub.docker.com/u/rocker/rstudio/)
+| r-devel (base plus R-devel from SVN)       | [good](https://registry.hub.docker.com/u/rocker/r-devel/) | [![LayersSize](https://images.microbadger.com/badges/image/rocker/r-devel.svg)](https://registry.hub.docker.com/u/rocker/r-devel/)
+| rstudio (base plus RStudio Server)         | [good](https://registry.hub.docker.com/u/rocker/rstudio/) | [![LayersSize](https://images.microbadger.com/badges/image/rocker/rstudio.svg)](https://registry.hub.docker.com/u/rocker/rstudio/)
 
 
 
