@@ -16,11 +16,12 @@ This is work in progress; please read our [instructions to contributors](https:/
 
 ## Base Docker Containers ##
 
-| Docker Container Source on GitHub          | Docker Hub Build Status and URL                           | Image Size
-| :---------------------------------------   | :-----------------------------------------                | :--------------
-| r-base (base package to build from)        | [good](https://registry.hub.docker.com/u/rocker/r-base/)  | [![LayersSize](https://images.microbadger.com/badges/image/library/r-base.svg)](https://registry.hub.docker.com/u/rocker/r-base/)
-| r-devel (base plus R-devel from SVN)       | [good](https://registry.hub.docker.com/u/rocker/r-devel/) | [![LayersSize](https://images.microbadger.com/badges/image/rocker/r-devel.svg)](https://registry.hub.docker.com/u/rocker/r-devel/)
-| rstudio (base plus RStudio Server)         | [good](https://registry.hub.docker.com/u/rocker/rstudio/) | [![LayersSize](https://images.microbadger.com/badges/image/rocker/rstudio.svg)](https://registry.hub.docker.com/u/rocker/rstudio/)
+| Docker Container Source on GitHub      | Docker Hub Build Status and URL                           | Image Size
+| :------------------------------------  | :-----------------------------------------                | :--------------
+| r-base (base package to build from)    | [good](https://registry.hub.docker.com/u/rocker/r-base/)  | [![Layers and Size](https://images.microbadger.com/badges/image/library/r-base.svg)](https://registry.hub.docker.com/u/rocker/r-base/)
+| r-devel (base plus R-devel from SVN)   | [good](https://registry.hub.docker.com/u/rocker/r-devel/) | [![Layers and Size](https://images.microbadger.com/badges/image/rocker/r-devel.svg)](https://registry.hub.docker.com/u/rocker/r-devel/)
+| rstudio (base plus RStudio Server)     | [good](https://registry.hub.docker.com/u/rocker/rstudio/) | [![Layers and Size](https://images.microbadger.com/badges/image/rocker/rstudio.svg)](https://registry.hub.docker.com/u/rocker/rstudio/)
+| drd (not-quite) daily (smaller) r-devel from SVN)| [good](https://registry.hub.docker.com/u/rocker/drd/)     | [![Layers and Size](https://images.microbadger.com/badges/image/rocker/drd.svg)](https://registry.hub.docker.com/u/rocker/drd/)
 
 
 
@@ -29,11 +30,12 @@ This is work in progress; please read our [instructions to contributors](https:/
 The rocker project also hosts Docker images illustrating particular use cases. More information
 about these can be found in their respective respositories on [rocker-org](https://github.com/rocker-org)
 
-| Docker Container Source on GitHub                         | Docker Hub Build Status and URL
-| :---------------------------------------                  | :-----------------------------------------
-| hadleyverse (rstudio + Hadley's packages, LaTeX)          | [good](https://registry.hub.docker.com/u/rocker/hadleyverse/)
-| ropensci (hadleyverse + rOpenSci packages)                | [good](https://registry.hub.docker.com/u/rocker/ropensci/)
-| r-devel-san (base, SVN's R-devel and SAN)                 | [good](https://registry.hub.docker.com/u/rocker/r-devel-san/)
+| Docker Container Source on GitHub                | Docker Hub Build Status and URL                                | Image Size
+| :---------------------------------------         | :-----------------------------------------                     | :--------------
+| hadleyverse (rstudio + Hadley's packages, LaTeX) | [good](https://registry.hub.docker.com/u/rocker/hadleyverse/)  | [![Layers and Size](https://images.microbadger.com/badges/image/rocker/hadleyverse.svg)](https://registry.hub.docker.com/u/rocker/hadleyverse/)
+| ropensci (hadleyverse + rOpenSci packages)       | [good](https://registry.hub.docker.com/u/rocker/ropensci/)     | [![Layers and Size](https://images.microbadger.com/badges/image/rocker/ropensci.svg)](https://registry.hub.docker.com/u/rocker/ropensci/)
+| r-devel-san (base, SVN's R-devel and SAN)        | [good](https://registry.hub.docker.com/u/rocker/r-devel-san/)  | [![Layers and Size](https://images.microbadger.com/badges/image/rocker/r-devel-san.svg)](https://registry.hub.docker.com/u/rocker/r-devel-san/)
+| r-apt (R plus CRAN + marutter repo information)  | [good](https://registry.hub.docker.com/u/rocker/r-apt/)        | [![Layers and Size](https://images.microbadger.com/badges/image/rocker/r-apt.svg)](https://registry.hub.docker.com/u/rocker/r-apt/)
 
 Anyone interested in proposing or collaborating on additional use cases should read our [guide to contributing](https://github.com/rocker-org/rocker/wiki/How-to-contribute) and [get in touch](http://github.com/rocker-org/rocker/issues)
 
