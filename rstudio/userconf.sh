@@ -5,6 +5,7 @@ USER=${USER:=rstudio}
 PASSWORD=${PASSWORD:=rstudio}
 USERID=${USERID:=1000}
 ROOT=${ROOT:=FALSE}
+DEL_DEFAULT_USER=${DEL_DEFAULT_USER:=FALSE}
 
 if [ "$USERID" -ne 1000 ]
 ## Configure user with a different USERID if requested.
@@ -35,6 +36,13 @@ if [ "$ROOT" == "TRUE" ]
 	then
 		adduser $USER sudo && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 		echo "$USER added to sudoers"
+fi
+
+# Delete default user (rstudio)
+if [ "$DEL_DEFAULT_USER" == "TRUE" ]
+	then
+		userdel -rf rstudio
+		echo "User rstudio deleted"
 fi
 
 ## add these to the global environment so they are avialable to the RStudio user 
