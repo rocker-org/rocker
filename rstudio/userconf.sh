@@ -6,7 +6,7 @@ PASSWORD=${PASSWORD:=rstudio}
 USERID=${USERID:=1000}
 ROOT=${ROOT:=FALSE}
 
-if [ $USERID -ne 1000 ]
+if [ "$USERID" -ne 1000 ]
 ## Configure user with a different USERID if requested.
 	then
 		echo "deleting user rstudio"
