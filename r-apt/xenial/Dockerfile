@@ -22,6 +22,7 @@ RUN apt-get update \
 		vim-tiny \
 		wget \
 		ca-certificates \
+        fonts-texgyre \
         && add-apt-repository --enable-source --yes "ppa:marutter/rrutter" \
 	&& add-apt-repository --enable-source --yes "ppa:marutter/c2d4u" 
 
