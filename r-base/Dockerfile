@@ -21,6 +21,7 @@ RUN apt-get update \
 		vim-tiny \
 		wget \
 		ca-certificates \
+		fonts-texgyre \
 	&& rm -rf /var/lib/apt/lists/*
 
 ## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
