@@ -9,24 +9,23 @@ ROOT=${ROOT:=FALSE}
 if [ "$USERID" -ne 1000 ]
 ## Configure user with a different USERID if requested.
 	then
+		echo "deleting user rstudio"
+		userdel rstudio
 		echo "creating new $USER with UID $USERID"
 		useradd -m $USER -u $USERID
 		mkdir /home/$USER
 		chown -R $USER /home/$USER
+elif [ "$USER" != "rstudio" ]
+	then
+		## cannot move home folder when it's a shared volume, have to copy and change permissions instead
+		cp -r /home/rstudio /home/$USER
+		## RENAME the user 	
+		usermod -l $USER -d /home/$USER rstudio
+		groupmod -n $USER rstudio 
+		chown -R $USER:$USER /home/$USER
+		echo "USER is now $USER"	
 fi
-
-if [ "$USER" != "rstudio" ]
-  then 
-	## RENAME the user 
-	usermod -l $USER rstudio
-  ## cannot move home folder when it's a shared volume, have to copy and change permissions instead
-	## usermod -m -d /home/$USER $USER 
-  cp -r /home/rstudio /home/$USER
-	groupmod -n $USER rstudio 
-  chown -R $USER:$USER /home/$USER
-	echo "USER is now $USER"
-fi
-
+	
 ## Add a password to user
 echo "$USER:$PASSWORD" | chpasswd
 
@@ -40,4 +39,3 @@ fi
 ## add these to the global environment so they are avialable to the RStudio user 
 echo "HTTR_LOCALHOST=$HTTR_LOCALHOST" >> /etc/R/Renviron.site
 echo "HTTR_PORT=$HTTR_PORT" >> /etc/R/Renviron.site
-
