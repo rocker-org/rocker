@@ -48,7 +48,7 @@ RUN echo '\n\
 \n  options(httr_oob_default = TRUE) \
 \n}' >> /etc/R/Rprofile.site
 
-RUN echo "PATH=$PATH" >> /etc/R/Renviron.site
+RUN echo "PATH=/usr/lib/rstudio-server/bin/:$PATH" >> /etc/R/Renviron.site
 
 ## A default user system configuration. For historical reasons,
 ## we want user to be 'rstudio', but it is 'docker' in r-base
