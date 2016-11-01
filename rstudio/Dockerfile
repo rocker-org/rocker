@@ -22,6 +22,7 @@ RUN rm -rf /var/lib/apt/lists/ \
     libedit2 \
     libcurl4-openssl-dev \
     libssl-dev \
+    lsb-release \
     psmisc \
     python-setuptools \
     sudo \
