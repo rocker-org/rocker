@@ -57,8 +57,8 @@ RUN apt-get update \
 	&& addgroup rstudio staff \
   && mkdir -p /etc/services.d/rstudio \
   && echo '#!/bin/bash \
-           \n chmod +x /usr/local/bin/docker-compose' > /etc/services.d/rstudio/run
-
+           \n exec /usr/lib/rstudio-server/bin/rserver --server-daemonize 0' \
+           > /etc/services.d/rstudio/run
 COPY userconf.sh /etc/cont-init.d/conf
 EXPOSE 8787
 
