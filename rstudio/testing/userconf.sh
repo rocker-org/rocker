@@ -6,6 +6,14 @@ PASSWORD=${PASSWORD:=rstudio}
 USERID=${USERID:=1000}
 ROOT=${ROOT:=FALSE}
 
+
+if [ "$USERID" -lt 1000 ]
+# Probably a macOS user, https://github.com/rocker-org/rocker/issues/205
+	then
+		echo "$USERID is less than 1000, setting minumum authorised user to 499"
+		echo auth-minimum-user-id=499 >> /etc/rstudio/rserver.conf
+fi
+
 if [ "$USERID" -ne 1000 ]
 ## Configure user with a different USERID if requested.
 	then
