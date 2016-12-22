@@ -29,12 +29,12 @@ RUN echo deb http://ftp.de.debian.org/debian jessie main >> /etc/apt/sources.lis
   && dpkg -i rstudio-server-${RSTUDIO_VERSION}-amd64.deb \
   && rm rstudio-server-*-amd64.deb \
   ## Symlink pandoc & standard pandoc templates for use system-wide
-  # && ln -s&& ln -s ln -s /usr/lib/rstudio-server/bin/pandoc/pandoc /usr/local/bin \
-  # && ln -s&& ln -s ln -s /usr/lib/rstudio-server/bin/pandoc/pandoc-citeproc /usr/local/bin \
+  && ln -s /usr/lib/rstudio-server/bin/pandoc/pandoc /usr/local/bin \
+  && ln -s /usr/lib/rstudio-server/bin/pandoc/pandoc-citeproc /usr/local/bin \
   && wget https://github.com/jgm/pandoc-templates/archive/${PANDOC_TEMPLATES_VERSION}.tar.gz \
   && mkdir -p /opt/pandoc/templates && tar zxf ${PANDOC_TEMPLATES_VERSION}.tar.gz \
   && cp -r pandoc-templates*/* /opt/pandoc/templates && rm -rf pandoc-templates* \
-  && mkdir /root/.pandoc # && ln -s&& ln -s ln -s /opt/pandoc/templates /root/.pandoc/templates \
+  && mkdir /root/.pandoc && ln -s /opt/pandoc/templates /root/.pandoc/templates \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/ \
   ## RStudio configuration for docker
@@ -63,9 +63,9 @@ RUN echo deb http://ftp.de.debian.org/debian jessie main >> /etc/apt/sources.lis
    && echo '#!/bin/bash \
            \n rstudio-server stop' \
            > /etc/services.d/rstudio/finish \
-  ## hack to avoid RStudio-bug in detecting build-dependencies         
-  # && ln -s&& ln -s ln -s /usr/local/bin/R /usr/bin/R \
-  # && ln -s&& ln -s ln -s /usr/local/lib/R /usr/lib/R
+  && ls
+  
+  
 
 COPY userconf.sh /etc/cont-init.d/conf
 EXPOSE 8787
