@@ -6,6 +6,18 @@
 
 This repository contains Dockerfiles for different Docker containers of interest to R users. 
 
+## Quickstart
+
+Below are instructions to instantly get an RStudio server container up and running. From the docker window: 
+
+```bash
+sudo docker run -d -p 8787:8787 rocker/rstudio
+```
+- username: rstudio 
+- password: rstudio
+
+For customization details see [Using the Rstudio image](https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image)
+
 ## Getting Started ##
 
 To get started right away, ensure you have [Docker installed](https://docs.docker.com/installation/) and start a container with `docker run --rm -ti rocker/r-base` (see [here](https://docs.docker.com/engine/reference/run/) for the `docker run` command options). In this case we are starting the `r-base` container (the base package to build from) in an interactive mode, see below for details of the other containers currently available. To get started on the `rstudio` container or its derivative containers (eg. `hadleyverse` and `ropensci`) you need to open a port, see the [instructions in the wiki](https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image). The [wiki](https://github.com/rocker-org/rocker/wiki) also contains further instructions and information on the project, including how to extend these images and contribute to development.
