@@ -6,11 +6,17 @@
 
 Visit `localhost:8787` in your browser and log in with username:password as `rstudio:rstudio`.
 
+## Notes:
 
-Note that all commands documented here work in just the same way with any container derived from `rocker/rstudio`,
-such as `rocker/tidyverse`.  
+- The `rocker/rstudio` is now part of the versioned stack. To request the `rstudio` image with a particular version of R, use the tag corresponding to the R version (e.g. `rocker/rstudio:3.4.0`, or `rocker/rsudio:devel`), or omit the tag to always get the latest stable release.  
+- Consequently, the Dockerfiles for these versions are [on rocker-versioned github repo](https://github.com/rocker-org/rocker-versioned/blob/master/rstudio).  Dockerfiles in [rocker-org/rockr](https://github.com/rocker-org/rocker/blob/master/rstudio/) are just aliases, execpt for `testing` tag, which builds on `r-base` image from this repo (and thus on `debian:testing`) rather than `rocker/r-ver`.
+
 
 ## Common configuration options:
+
+Note: all commands documented here work in just the same way with any container derived from `rocker/rstudio`,
+such as `rocker/tidyverse`.  
+
 
 #### Use a custom password by specifying the `PASSWORD` environmental variable
 
