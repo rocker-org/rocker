@@ -18,6 +18,8 @@ RUN apt-get update \
 		ed \
 		less \
 		locales \
+		pandoc \
+		qpdf \
 		vim-tiny \
 		wget \
 		ca-certificates \
