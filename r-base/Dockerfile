@@ -5,6 +5,14 @@ FROM debian:testing
 ## This handle reaches Carl and Dirk
 MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
 
+## Set R's BLAS, this is controlled via docker build flags `--build-arg=R_BLAS=ATLAS`
+## Valid options:
+## OPENBLAS - Open BLAS
+## ATLAS - ATLAS BLAS
+## anything else - R BLAS
+ARG R_BLAS
+ENV R_BLAS=${R_BLAS:-RBLAS}
+
 ## Set a default user. Available via runtime flag `--user docker` 
 ## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
 ## User should also have & own a home directory (for rstudio or linked volumes to work properly). 
@@ -13,6 +21,7 @@ RUN useradd docker \
 	&& chown docker:docker /home/docker \
 	&& addgroup docker staff
 
+## Install required packages
 RUN apt-get update \ 
 	&& apt-get install -y --no-install-recommends \
 		ed \
@@ -21,8 +30,21 @@ RUN apt-get update \
 		vim-tiny \
 		wget \
 		ca-certificates \
-		fonts-texgyre \
-	&& rm -rf /var/lib/apt/lists/*
+		fonts-texgyre 
+
+## Install Open BLAS if requested
+RUN if [ $R_BLAS = OPENBLAS ]; then \
+  apt-get install -y --no-install-recommends libopenblas-base libopenblas-dev; \
+  fi
+
+## Install ATLAS BLAS if requeted
+RUN if [ $R_BLAS = ATLAS ]; then \
+  apt-get install -y --no-install-recommends libatlas-base-dev; \
+  fi
+
+## Clear up space after installing packages.  This helps keep the image small.
+RUN rm -rf /var/lib/apt/lists/*
+
 
 ## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
@@ -36,6 +58,7 @@ ENV LANG en_US.UTF-8
 RUN echo "deb http://http.debian.net/debian sid main" > /etc/apt/sources.list.d/debian-unstable.list \
 	&& echo 'APT::Default-Release "testing";' > /etc/apt/apt.conf.d/default
 
+## Current Stable R Version
 ENV R_BASE_VERSION 3.4.1
 
 ## Now install R and littler, and create a link for littler in /usr/local/bin
