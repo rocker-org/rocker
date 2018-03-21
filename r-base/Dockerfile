@@ -44,9 +44,9 @@ RUN apt-get update \
 	&& apt-get install -t unstable -y --no-install-recommends \
 		littler \
                 r-cran-littler \
-		r-base=${R_BASE_VERSION}* \
-		r-base-dev=${R_BASE_VERSION}* \
-		r-recommended=${R_BASE_VERSION}* \
+		r-base=${R_BASE_VERSION} \
+		r-base-dev=${R_BASE_VERSION} \
+		r-recommended=${R_BASE_VERSION} \
         && echo 'options(repos = c(CRAN = "https://cloud.r-project.org/"), download.file.method = "libcurl")' >> /etc/R/Rprofile.site \
         && echo 'source("/etc/R/Rprofile.site")' >> /etc/littler.r \
 	&& ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r \
