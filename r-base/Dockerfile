@@ -1,9 +1,11 @@
 ## Emacs, make this -*- mode: sh; -*-
  
-FROM debian:unstable
+FROM debian:testing
 
-## This handle reaches Carl and Dirk
-MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
+LABEL org.label-schema.license="GPL-2.0" \
+      org.label-schema.vcs-url="https://github.com/rocker-org/r-base" \
+      org.label-schema.vendor="Rocker Project" \
+      maintainer="Dirk Eddelbuettel <edd@debian.org>"
 
 ## Set a default user. Available via runtime flag `--user docker` 
 ## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
@@ -33,24 +35,23 @@ ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 
 ## Use Debian unstable via pinning -- new style via APT::Default-Release
-#echo "deb http://http.debian.net/debian sid main" > /etc/apt/sources.list.d/debian-unstable.list \
-#        && echo 'APT::Default-Release "unstable";' > /etc/apt/apt.conf.d/default \
-#        && 
-RUN echo "deb [trusted=yes] https://eddelbuettel.github.io/drr35/ ./" > /etc/apt/sources.list.d/debian-r-3.5.list 
+RUN echo "deb http://http.debian.net/debian sid main" > /etc/apt/sources.list.d/debian-unstable.list \
+        && echo 'APT::Default-Release "unstable";' > /etc/apt/apt.conf.d/default 
 
 ENV R_BASE_VERSION 3.5.0
 
 ## Now install R and littler, and create a link for littler in /usr/local/bin
 ## Also set a default CRAN repo, and make sure littler knows about it too
-## NB '-t unstable' paused to allow drr35 repo to supply current ones
+## Also install stringr to make dococt install (from source) easier
 RUN apt-get update \
-	&& apt-get install -y --no-install-recommends \
+	&& apt-get install -t unstable -y --no-install-recommends \
 		littler \
                 r-cran-littler \
+                r-cran-stringr \
 		r-base=${R_BASE_VERSION}-* \
 		r-base-dev=${R_BASE_VERSION}-* \
 		r-recommended=${R_BASE_VERSION}-* \
-        && echo 'options(repos = c(CRAN = "https://cloud.r-project.org/"), download.file.method = "libcurl")' >> /etc/R/Rprofile.site \
+        && echo 'options(repos = c(CRAN = "https://cloud.r-project.org/"))' >> /etc/R/Rprofile.site \
         && echo 'source("/etc/R/Rprofile.site")' >> /etc/littler.r \
 	&& ln -s /usr/lib/R/site-library/littler/examples/install.r /usr/local/bin/install.r \
 	&& ln -s /usr/lib/R/site-library/littler/examples/install2.r /usr/local/bin/install2.r \
