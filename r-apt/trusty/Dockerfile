@@ -2,8 +2,10 @@
  
 FROM ubuntu:trusty
 
-## This handle reaches Carl and Dirk
-MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
+LABEL org.label-schema.license="GPL-2.0" \
+      org.label-schema.vcs-url="https://github.com/rocker-org/r-base" \
+      org.label-schema.vendor="Rocker Project" \
+      maintainer="Dirk Eddelbuettel <edd@debian.org>"
 
 ## Set a default user. Available via runtime flag `--user docker` 
 ## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
@@ -32,15 +34,14 @@ RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& /usr/sbin/update-locale LANG=en_US.UTF-8
 
 ## Now install R and littler, and create a link for littler in /usr/local/bin
-## Also set a default CRAN repo, and make sure littler knows about it too
-## Note 1: we need wget here as the build env is too old to work with libcurl (we think, precise was)
-## Note 2: r-cran-docopt is not currently in c2d4u so we install from source
+## Default CRAN repo is now set by R itself, and littler knows about it too
+## r-cran-docopt is not currently in c2d4u so we install from source
+## Note: we need wget as the build env is too old for libcurl (we think, precise was)
 RUN apt-get install -y --no-install-recommends \
                 r-cran-littler \
 		r-base \
 		r-base-dev \
 		r-recommended \
-                r-cran-stringr \
         && echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "wget")' >> /etc/R/Rprofile.site \
 	&& ln -s /usr/lib/R/site-library/littler/examples/install.r /usr/local/bin/install.r \
 	&& ln -s /usr/lib/R/site-library/littler/examples/install2.r /usr/local/bin/install2.r \
