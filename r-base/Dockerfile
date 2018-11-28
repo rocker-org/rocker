@@ -1,6 +1,6 @@
 ## Emacs, make this -*- mode: sh; -*-
  
-FROM debian:testing
+FROM debian:testing-slim
 
 LABEL org.label-schema.license="GPL-2.0" \
       org.label-schema.vcs-url="https://github.com/rocker-org/r-base" \
