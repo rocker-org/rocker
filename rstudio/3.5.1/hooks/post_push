@@ -1,0 +1,49 @@
+#!/bin/bash
+set -e
+
+# add additional tags without bugfix and minor version
+MAJ_MIN_BUG=${PWD##*/}
+MAJ_MIN=$(echo $MAJ_MIN_BUG | sed "s/\.[^\.]*$//")
+MAJ=$(echo $MAJ_MIN | sed "s/\.[^\.]*$//")
+
+echo "Add version tags for major and major.minor releases."
+
+## x.y.z
+# Tag for major.minor.bug is already provided by Docker Hub configuration
+
+## x.y
+# Check if this image is newest within major.minor
+NEWEST_MAJ_MIN=`ls ../ | grep "^$MAJ_MIN" | sort --version-sort | tail -n 1`
+if [ "$MAJ_MIN_BUG" == "$NEWEST_MAJ_MIN" ]
+then
+    echo "This version is also the newest major.minor version, add tag '$MAJ_MIN' to '$MAJ_MIN_BUG'"
+    docker tag $IMAGE_NAME $DOCKER_REPO:$MAJ_MIN
+    docker push $DOCKER_REPO:$MAJ_MIN
+else
+    echo "$NEWEST_MAJ_MIN is newest version starting with $MAJ_MIN, not tagging this one ($MAJ_MIN_BUG)."
+fi
+
+## x
+# Check if this image is "latest" within major
+NEWEST_MAJ=`ls ../ | grep "^$MAJ" | sort --version-sort | tail -n 1`
+if [ "$MAJ_MIN_BUG" == "$NEWEST_MAJ" ]
+then
+    echo "This version is also the newest major version, add tag '$MAJ' to '$MAJ_MIN_BUG'."
+    docker tag $IMAGE_NAME $DOCKER_REPO:$MAJ
+    docker push $DOCKER_REPO:$MAJ
+else
+    echo "$NEWEST_MAJ is newest version starting with $MAJ, not tagging this one ($MAJ_MIN_BUG)."
+fi
+
+# Get "latest": list parent directory files starting with number, sort them and only select the last one
+LATEST=`ls ../ | grep '^[0-9]' | sort --version-sort | tail -n 1`
+if [ "$MAJ_MIN_BUG" == "$LATEST" ]
+then
+    echo "This version is also newest version overall, add 'latest' tag to $MAJ_MIN_BUG"
+    docker tag $IMAGE_NAME $DOCKER_REPO:latest
+    docker push $DOCKER_REPO:latest
+else
+    echo "$LATEST is newest version overall, not tagging this one ($MAJ_MIN_BUG) with latest."
+fi
+
+echo "Version tagging completed."
