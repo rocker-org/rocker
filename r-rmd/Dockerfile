@@ -23,7 +23,7 @@ RUN apt-get update \
         && install.r binb linl pinp tint \
         && mkdir ~/.R \
         && echo _R_CHECK_FORCE_SUGGESTS_=FALSE > ~/.R/check.Renviron \
-        && cd /usr/local/bin && \
+        && cd /usr/local/bin \
         && ln -s /usr/lib/R/site-library/littler/examples/render.r .
 
 CMD ["bash"]
