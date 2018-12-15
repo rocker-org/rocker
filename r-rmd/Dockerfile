@@ -14,7 +14,7 @@ RUN apt-get update \
                 r-cran-runit \
                 r-cran-testthat \
                 texinfo \
-                texlive-fonts-extra
+                texlive-fonts-extra \
                 texlive-fonts-recommended \
                 texlive-latex-extra \
                 texlive-latex-recommended \
