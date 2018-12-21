@@ -1,5 +1,5 @@
 ## Emacs, make this -*- mode: sh; -*-
- 
+
 FROM debian:testing
 
 LABEL org.label-schema.license="GPL-2.0" \
@@ -7,15 +7,15 @@ LABEL org.label-schema.license="GPL-2.0" \
       org.label-schema.vendor="Rocker Project" \
       maintainer="Dirk Eddelbuettel <edd@debian.org>"
 
-## Set a default user. Available via runtime flag `--user docker` 
+## Set a default user. Available via runtime flag `--user docker`
 ## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
-## User should also have & own a home directory (for rstudio or linked volumes to work properly). 
+## User should also have & own a home directory (for rstudio or linked volumes to work properly).
 RUN useradd docker \
 	&& mkdir /home/docker \
 	&& chown docker:docker /home/docker \
 	&& addgroup docker staff
 
-RUN apt-get update \ 
+RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		ed \
 		less \
@@ -36,9 +36,9 @@ ENV LANG en_US.UTF-8
 
 ## Use Debian unstable via pinning -- new style via APT::Default-Release
 RUN echo "deb http://http.debian.net/debian sid main" > /etc/apt/sources.list.d/debian-unstable.list \
-        && echo 'APT::Default-Release "testing";' > /etc/apt/apt.conf.d/default 
+        && echo 'APT::Default-Release "testing";' > /etc/apt/apt.conf.d/default
 
-ENV R_BASE_VERSION 3.5.1
+ENV R_BASE_VERSION 3.5.2
 
 ## Now install R and littler, and create a link for littler in /usr/local/bin
 RUN apt-get update \
