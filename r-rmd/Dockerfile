@@ -8,7 +8,9 @@ LABEL org.label-schema.license="GPL-2.0" \
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
+                lmodern \
                 pandoc-citeproc \
+                r-cran-ggplot2 \
                 r-cran-knitr \
 		r-cran-rmarkdown \
                 r-cran-runit \
