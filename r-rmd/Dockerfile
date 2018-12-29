@@ -10,6 +10,7 @@ RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
                 lmodern \
                 pandoc-citeproc \
+                r-cran-formatr \
                 r-cran-ggplot2 \
                 r-cran-knitr \
 		r-cran-rmarkdown \
@@ -21,6 +22,8 @@ RUN apt-get update \
                 texlive-latex-extra \
                 texlive-latex-recommended \
                 texlive-luatex \
+                texlive-plain-generic \
+                texlive-science \
                 texlive-xetex \
         && install.r binb linl pinp tint \
         && mkdir ~/.R \
