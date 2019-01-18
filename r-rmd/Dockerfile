@@ -8,6 +8,7 @@ LABEL org.label-schema.license="GPL-2.0" \
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
+                ghostscript \
                 lmodern \
                 pandoc-citeproc \
                 qpdf \
