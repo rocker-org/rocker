@@ -44,8 +44,10 @@ ENV R_BASE_VERSION 4.0.0
 ##
 ## Note that _for now_ with the transition from experimental to unstable is only planned
 ## we select experimental along with my small support PPA (off GitHub) for r-recommended
+## we also turn testing=default off to let the experimental PPA supply r-recommended
 RUN echo "deb http://deb.debian.org/debian experimental main" > /etc/apt/sources.list.d/experimental.list \
-    && echo "deb [trusted=yes] https://eddelbuettel.github.io/ppaR400 ./" > /etc/apt/sources.list.d/edd-r4.list
+    && echo "deb [trusted=yes] https://eddelbuettel.github.io/ppaR400 ./" > /etc/apt/sources.list.d/edd-r4.list \
+    && rm /etc/apt/apt.conf.d/default
 
 ## Now install R and littler, and create a link for littler in /usr/local/bin
 ## ** Note that we switched this to '-t experimental' as well
