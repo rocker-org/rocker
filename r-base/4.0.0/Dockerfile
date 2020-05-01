@@ -42,7 +42,7 @@ ENV R_BASE_VERSION 4.0.0
 
 ## ** R 4.0.0 Transition
 ##
-## Note that _for now_ with the transition from experimental to unstable only planned
+## Note that _for now_ with the transition from experimental to unstable is only planned
 ## we select experimental along with my small support PPA (off GitHub) for r-recommended
 RUN echo "deb http://deb.debian.org/debian experimental main" > /etc/apt/sources.list.d/experimental.list \
     && echo "deb [trusted=yes] https://eddelbuettel.github.io/ppaR400 ./" > /etc/apt/sources.list.d/edd-r4.list
