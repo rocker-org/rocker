@@ -18,16 +18,15 @@ RUN useradd docker \
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		software-properties-common \
+                dirmngr \
                 ed \
 		less \
 		locales \
 		vim-tiny \
 		wget \
 		ca-certificates \
-        && add-apt-repository --enable-source --yes "ppa:edd/r-4.0"
-
-#        && add-apt-repository --enable-source --yes "ppa:marutter/rrutter3.5" \
-#	&& add-apt-repository --enable-source --yes "ppa:marutter/c2d4u3.5"
+        && add-apt-repository --enable-source --yes "ppa:marutter/rrutter4.0" \
+        && add-apt-repository --enable-source --yes "ppa:c2d4u.team/c2d4u4.0+"
 
 ## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
