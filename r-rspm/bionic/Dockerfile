@@ -53,7 +53,8 @@ RUN apt-get update \
  	&& ln -s /usr/lib/R/site-library/littler/examples/testInstalled.r /usr/local/bin/testInstalled.r \
  	&& install.r docopt \
  	&& rm -rf /tmp/downloaded_packages/ /tmp/*.rds \
- 	&& rm -rf /var/lib/apt/lists/*
+ 	&& rm -rf /var/lib/apt/lists/* \
+        && chgrp 1000 /usr/local/lib/R/site-library
 
 COPY Rprofile.site /etc/R
 
