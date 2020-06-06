@@ -42,7 +42,7 @@ ENV R_BASE_VERSION 4.0.1
 
 ## Now install R and littler, and create a link for littler in /usr/local/bin
 RUN apt-get update \
-	&& apt-get install -t unstable -y --no-install-recommends \
+    && apt-get install -t unstable -y --no-install-recommends \
                 gcc-9-base \
 		littler \
                 r-cran-littler \
