@@ -59,6 +59,18 @@ RUN apt-get update \
 
 COPY Rprofile.site /etc/R
 
-RUN install.r docopt
+## Install "some" libraries we are likely to need to run-tim:
+##   libgdal20     (package sf)
+##   libgeos-3.6.2 (package sf)
+##   libproj12     (package sf)
+##   libudunits2-0 (package units, sf)
+##   libxml2       (package xml2, tidyverse)
+RUN install.r docopt \
+	&& apt-get install -y --no-install-recommends \
+                   libgdal20 \
+                   libgeos-3.6.2 \
+                   libproj12 \
+                   libudunits2-0 \
+		   libxml2
 
 CMD ["bash"]
