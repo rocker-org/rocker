@@ -17,14 +17,16 @@ RUN useradd docker \
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
+		ca-certificates \
 		ed \
+		fonts-texgyre \
 		less \
 		locales \
+                sudo \
 		vim-tiny \
 		wget \
-		ca-certificates \
-		fonts-texgyre \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/lib/apt/lists/* \
+        && echo "docker ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/docker
 
 ## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
@@ -50,6 +52,8 @@ RUN apt-get update \
 		r-base=${R_BASE_VERSION}-* \
 		r-base-dev=${R_BASE_VERSION}-* \
 		r-recommended=${R_BASE_VERSION}-* \
+	&& ln -s /usr/lib/R/site-library/littler/examples/build.r /usr/local/bin/build.r \
+	&& ln -s /usr/lib/R/site-library/littler/examples/check.r /usr/local/bin/check.r \
 	&& ln -s /usr/lib/R/site-library/littler/examples/install.r /usr/local/bin/install.r \
 	&& ln -s /usr/lib/R/site-library/littler/examples/install2.r /usr/local/bin/install2.r \
 	&& ln -s /usr/lib/R/site-library/littler/examples/installBioc.r /usr/local/bin/installBioc.r \
