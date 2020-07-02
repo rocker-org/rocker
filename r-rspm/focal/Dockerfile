@@ -1,6 +1,6 @@
 ## Emacs, make this -*- mode: sh; -*-
 
-FROM ubuntu:bionic
+FROM ubuntu:focal
 
 LABEL org.label-schema.license="GPL-2.0" \
       org.label-schema.vcs-url="https://github.com/rocker-org/r-apt" \
@@ -32,7 +32,7 @@ RUN apt-get update \
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& locale-gen en_US.utf8 \
 	&& /usr/sbin/update-locale LANG=en_US.UTF-8 \
-        && echo "deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran40/" > /etc/apt/sources.list.d/cran.list
+        && echo "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/" > /etc/apt/sources.list.d/cran.list
 
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
@@ -63,17 +63,17 @@ RUN apt-get update \
 COPY Rprofile.site /etc/R
 
 ## Install "some" libraries we are likely to need to run-time:
-##   libgdal20     (package sf)
-##   libgeos-3.6.2 (package sf)
-##   libproj12     (package sf)
+##   libgdal26     (package sf)
+##   libgeos-3.8.0 (package sf)
+##   libproj15     (package sf)
 ##   libudunits2-0 (package units, sf)
 ##   libxml2       (package xml2, tidyverse)
 ## and install docopt used by some of the littler scripts
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
-                   libgdal20 \
-                   libgeos-3.6.2 \
-                   libproj12 \
+                   libgdal26 \
+                   libgeos-3.8.0 \
+                   libproj15 \
                    libudunits2-0 \
 		   libxml2 \
 	&& install.r docopt

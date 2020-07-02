@@ -1,0 +1,7 @@
+local({
+    r <- getOption("repos")
+    #r["CRAN"] <- "https://cloud.r-project.org"
+    r["CRAN"] <- "https://packagemanager.rstudio.com/all/__linux__/focal/latest"
+    options(repos = r)
+    options(HTTPUserAgent = sprintf("R/%s R (%s)", getRversion(), paste(getRversion(), R.version$platform, R.version$arch, R.version$os)))
+})
