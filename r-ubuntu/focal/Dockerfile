@@ -3,7 +3,7 @@
 FROM ubuntu:focal
 
 LABEL org.label-schema.license="GPL-2.0" \
-      org.label-schema.vcs-url="https://github.com/rocker-org/r-apt" \
+      org.label-schema.vcs-url="https://github.com/rocker-org/r-ubuntu" \
       org.label-schema.vendor="Rocker Project" \
       maintainer="Dirk Eddelbuettel <edd@debian.org>"
 
