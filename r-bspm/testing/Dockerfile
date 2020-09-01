@@ -20,7 +20,9 @@ RUN apt-get update \
         && echo "options(bspm.sudo=TRUE)" >> /etc/R/Rprofile.site \
         && echo 'APT::Install-Recommends "false";' > /etc/apt/apt.conf.d/90local-no-recommends \
         && echo "docker ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/local-docker-user \
+        && rm /etc/apt/sources.list.d/eddelbuettel-ppa.list \
         && chmod 0440 /etc/sudoers.d/local-docker-user \
-        && rm /etc/apt/sources.list.d/eddelbuettel-ppa.list
+        && chgrp 1000 /usr/local/lib/R/site-library \
+        && install.r remotes
 
 CMD ["bash"]
