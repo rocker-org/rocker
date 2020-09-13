@@ -39,6 +39,9 @@ ENV LANG en_US.UTF-8
 ## This was not needed before but we need it now
 ENV DEBIAN_FRONTEND noninteractive
 
+## Otherwise timedatectl will get called which leads to 'no systemd' inside Docker
+ENV TZ UTC
+
 # Now install R and littler, and create a link for littler in /usr/local/bin
 # Default CRAN repo is now set by R itself, and littler knows about it too
 # r-cran-docopt is not currently in c2d4u so we install from source
