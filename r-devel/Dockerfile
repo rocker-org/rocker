@@ -6,6 +6,10 @@ FROM r-base:latest
 ## This handle reaches Carl and Dirk
 MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
 
+## Needed in case a base package has an interactive question
+## (as e.g. base-passwd in Oct 2020)
+ENV DEBIAN_FRONTEND noninteractive
+
 ## Remain current
 RUN apt-get update -qq \
 	&& apt-get dist-upgrade -y
