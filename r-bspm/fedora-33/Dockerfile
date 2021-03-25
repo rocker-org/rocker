@@ -25,6 +25,12 @@ RUN useradd -m docker \
 RUN dnf -y install R-littler-examples \
     && ln -s /usr/lib64/R/library/littler/examples/install.r \
         /usr/local/bin/install.r \
+    && ln -s /usr/lib64/R/library/littler/examples/install2.r \
+        /usr/local/bin/install2.r \
+    && ln -s /usr/lib64/R/library/littler/examples/installGithub.r \
+        /usr/local/bin/installGithub.r \
+    && ln -s /usr/lib64/R/library/littler/examples/testInstalled.r \
+        /usr/local/bin/testInstalled.r \
     && install.r remotes
 
 CMD ["bash"]
