@@ -12,13 +12,15 @@ RUN dnf -y install 'dnf-command(copr)' \
     && sed -ie '/nodocs/d' /etc/dnf/dnf.conf \
     && dnf -y install R-CoprManager sudo \
     && echo "options(CoprManager.sudo=TRUE)" > \
-        /usr/lib64/R/etc/Rprofile.site.d/51-CoprManager-sudo.site
+        /usr/lib64/R/etc/Rprofile.site.d/51-CoprManager-sudo.site \
+    && echo "options(repos='https://cloud.r-project.org')" > \
+        /usr/lib64/R/etc/Rprofile.site.d/00-repos.site
 
 RUN useradd -m docker \
     && echo "docker ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/docker-user \
     && chmod 0440 /etc/sudoers.d/docker-user \
-    && mkdir -p /usr/local/lib/R/library \
-    && chgrp 1000 /usr/local/lib/R/library
+    && mkdir -p /usr/local/lib/R/site-library \
+    && chown 1000:1000 /usr/local/lib/R/site-library
 
 RUN dnf -y install R-littler-examples \
     && ln -s /usr/lib64/R/library/littler/examples/install.r \
