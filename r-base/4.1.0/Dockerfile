@@ -2,10 +2,10 @@
 
 FROM debian:testing
 
-LABEL org.label-schema.license="GPL-2.0" \
-      org.label-schema.vcs-url="https://github.com/rocker-org/r-base" \
-      org.label-schema.vendor="Rocker Project" \
-      maintainer="Dirk Eddelbuettel <edd@debian.org>"
+LABEL org.opencontainers.image.licenses="GPL-2.0-or-later" \
+      org.opencontainers.image.source="https://github.com/rocker-org/r-base" \
+      org.opencontainers.image.vendor="Rocker Project" \
+￼     org.opencontainers.image.authors="Dirk Eddelbuettel <edd@debian.org>"
 
 ## Set a default user. Available via runtime flag `--user docker`
 ## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
