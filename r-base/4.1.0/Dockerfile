@@ -3,7 +3,7 @@
 FROM debian:testing
 
 LABEL org.opencontainers.image.licenses="GPL-2.0-or-later" \
-      org.opencontainers.image.source="https://github.com/rocker-org/r-base" \
+      org.opencontainers.image.source="https://github.com/rocker-org/rocker" \
       org.opencontainers.image.vendor="Rocker Project" \
       org.opencontainers.image.authors="Dirk Eddelbuettel <edd@debian.org>"
 
