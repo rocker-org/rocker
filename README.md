@@ -42,7 +42,7 @@ image            | description                               | size   | metrics 
 
 ### Versioned stack (builds on r-ver)
 
-These images build on `rocker/r-ver`.  Each of these include tags to specify the desired version of R, from `3.1.0`- `3.4.0`, `:latest` and `:devel`.  See [rocker-versioned](https://github.com/rocker-org/rocker-versioned) repo for details.
+These images build on `rocker/r-ver`.  Each of these include tags to specify the desired version of R, e.g `:4.0.0`, `:latest`, `:devel`.  See [rocker-versioned2](https://github.com/rocker-org/rocker-versioned2) repo for details.  R `3.x` versions are built from the older recipes in [rocker-versioned](https://github.com/rocker-org/rocker-versioned) 
 
 image            | description                               | size   | metrics | build status 
 ---------------- | ----------------------------------------- | ------ | ------- | --------------
