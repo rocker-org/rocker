@@ -2,10 +2,10 @@
 
 FROM debian:testing
 
-LABEL org.label-schema.license="GPL-2.0" \
-      org.label-schema.vcs-url="https://github.com/rocker-org/r-base" \
-      org.label-schema.vendor="Rocker Project" \
-      maintainer="Dirk Eddelbuettel <edd@debian.org>"
+LABEL org.opencontainers.image.licenses="GPL-2.0-or-later" \
+      org.opencontainers.image.source="https://github.com/rocker-org/rocker" \
+      org.opencontainers.image.vendor="Rocker Project" \
+      org.opencontainers.image.authors="Dirk Eddelbuettel <edd@debian.org>"
 
 ## Set a default user. Available via runtime flag `--user docker`
 ## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
@@ -39,7 +39,7 @@ RUN echo "deb http://http.debian.net/debian sid main" > /etc/apt/sources.list.d/
         && echo 'APT::Default-Release "testing";' > /etc/apt/apt.conf.d/default \
         && echo 'APT::Install-Recommends "false";' > /etc/apt/apt.conf.d/90local-no-recommends
 
-ENV R_BASE_VERSION 4.0.5
+ENV R_BASE_VERSION 4.0.5.20210511
 
 ## During the freeze, new (source) packages are in experimental and we place the binaries in our PPA
 RUN echo "deb http://deb.debian.org/debian experimental main" > /etc/apt/sources.list.d/experimental.list \
@@ -48,7 +48,6 @@ RUN echo "deb http://deb.debian.org/debian experimental main" > /etc/apt/sources
 ## Now install R and littler, and create a link for littler in /usr/local/bin
 RUN apt-get update \
         && apt-get install -y --no-install-recommends \
-                gcc-9-base \
                 libopenblas0-pthread \
 		littler \
                 r-cran-littler \
