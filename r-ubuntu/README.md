@@ -11,7 +11,7 @@ the LTS release and connects to the [PPA by Michael Rutter](https://launchpad.ne
 To install, use the explicit LTS tag---currently 18.04---when pulling
 
 ```
-docker pull r-ubuntu:18.04
+docker pull rocker/r-ubuntu:18.04
 ```
 
 as we do not want to use latest (which may suggest an interim Ubuntu release
