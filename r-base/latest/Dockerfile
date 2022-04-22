@@ -39,7 +39,7 @@ RUN echo "deb http://http.debian.net/debian sid main" > /etc/apt/sources.list.d/
         && echo 'APT::Default-Release "testing";' > /etc/apt/apt.conf.d/default \
         && echo 'APT::Install-Recommends "false";' > /etc/apt/apt.conf.d/90local-no-recommends
 
-ENV R_BASE_VERSION 4.1.3
+ENV R_BASE_VERSION 4.2.0
 
 ## During the freeze, new (source) packages are in experimental and we place the binaries in our PPA
 #RUN echo "deb http://deb.debian.org/debian experimental main" > /etc/apt/sources.list.d/experimental.list \
