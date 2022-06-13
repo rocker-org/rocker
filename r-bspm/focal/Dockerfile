@@ -13,7 +13,7 @@ RUN add-apt-repository --yes "ppa:edd/r-4.0" \
 	&& apt-get install -y --no-install-recommends \
                 sudo \
                 r-cran-bspm \
-        && echo "bspm::enable()" >> /etc/R/Rprofile.site \
+        && echo "suppressMessages(bspm::enable())" >> /etc/R/Rprofile.site \
         && echo "options(bspm.sudo=TRUE)" >> /etc/R/Rprofile.site \
         && echo 'APT::Install-Recommends "false";' > /etc/apt/apt.conf.d/90local-no-recommends \
         && echo "docker ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/local-docker-user \
