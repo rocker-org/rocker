@@ -13,9 +13,10 @@ LABEL org.opencontainers.image.licenses="GPL-2.0-or-later" \
 RUN useradd docker \
 	&& mkdir /home/docker \
 	&& chown docker:docker /home/docker \
-	&& addgroup docker staff
+	&& adduser docker staff
 
 RUN apt-get update \
+        && apt-get upgrade -y \
 	&& apt-get install -y --no-install-recommends \
 		ed \
 		less \
