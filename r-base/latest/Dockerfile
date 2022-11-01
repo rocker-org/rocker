@@ -15,8 +15,9 @@ RUN useradd docker \
 	&& chown docker:docker /home/docker \
 	&& adduser docker staff
 
+## NB: No 'apt-get upgrade -y' in official images, see eg
+## https://github.com/docker-library/official-images/pull/13443#issuecomment-1297829291
 RUN apt-get update \
-        && apt-get upgrade -y \
 	&& apt-get install -y --no-install-recommends \
 		ed \
 		less \
