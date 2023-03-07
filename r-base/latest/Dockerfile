@@ -10,10 +10,8 @@ LABEL org.opencontainers.image.licenses="GPL-2.0-or-later" \
 ## Set a default user. Available via runtime flag `--user docker`
 ## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
 ## User should also have & own a home directory (for rstudio or linked volumes to work properly).
-RUN useradd docker \
-	&& mkdir /home/docker \
-	&& chown docker:docker /home/docker \
-	&& adduser docker staff
+RUN useradd -s /bin/bash -m docker \
+	&& usermod -a -G staff docker
 
 ## NB: No 'apt-get upgrade -y' in official images, see eg
 ## https://github.com/docker-library/official-images/pull/13443#issuecomment-1297829291
@@ -58,6 +56,8 @@ RUN apt-get update \
 		r-base-dev=${R_BASE_VERSION}-* \
                 r-base-core=${R_BASE_VERSION}-* \
 		r-recommended=${R_BASE_VERSION}-* \
+	&& chown root:staff "/usr/local/lib/R/site-library" \
+	&& chmod g+ws "/usr/local/lib/R/site-library" \
 	&& ln -s /usr/lib/R/site-library/littler/examples/install.r /usr/local/bin/install.r \
 	&& ln -s /usr/lib/R/site-library/littler/examples/install2.r /usr/local/bin/install2.r \
 	&& ln -s /usr/lib/R/site-library/littler/examples/installBioc.r /usr/local/bin/installBioc.r \
