@@ -56,6 +56,8 @@ RUN apt-get update \
 		r-base-dev=${R_BASE_VERSION}-* \
                 r-base-core=${R_BASE_VERSION}-* \
 		r-recommended=${R_BASE_VERSION}-* \
+	&& chown root:staff "/usr/local/lib/R/site-library" \
+	&& chmod g+ws "/usr/local/lib/R/site-library" \
 	&& ln -s /usr/lib/R/site-library/littler/examples/install.r /usr/local/bin/install.r \
 	&& ln -s /usr/lib/R/site-library/littler/examples/install2.r /usr/local/bin/install2.r \
 	&& ln -s /usr/lib/R/site-library/littler/examples/installBioc.r /usr/local/bin/installBioc.r \
