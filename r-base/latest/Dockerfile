@@ -43,7 +43,7 @@ RUN echo "Types: deb" > /etc/apt/sources.list.d/debian-unstable.sources \
         && echo 'APT::Default-Release "testing";' > /etc/apt/apt.conf.d/default \
         && echo 'APT::Install-Recommends "false";' > /etc/apt/apt.conf.d/90local-no-recommends
 
-ENV R_BASE_VERSION=4.6.1
+ENV R_BASE_VERSION=4.6.2
 
 # ## During the freeze, new (source) packages are in experimental and we place the binaries in our PPA
 # RUN echo "deb http://deb.debian.org/debian experimental main" > /etc/apt/sources.list.d/experimental.list \
